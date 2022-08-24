@@ -3,7 +3,7 @@
 <h3>Cara Install</h3>
 <ul>
 <li>Silakan download source code ini atau jalankan git clone pada terminal</li>
-<li>Buat database akuntansi di phpmyadmin, kemudian import database yang ada pada folder database</li>
+<li>Buat database akuntansi di phpmyadmin, kemudian import database yang ada pada folder database, yang judul filenya siak.sql</li>
 <li>Jika ada masalah silakan Dm di Ig:@pinemjosse </li>
 </ul>
 <hr>
