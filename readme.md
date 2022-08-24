@@ -1,6 +1,4 @@
-![Alt Text](https://raw.githubusercontent.com/yat98/sia/master/assets/img/brand/blue.png)
-<br><br><br>
-SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web yang mempunyai fitur jurnal umum, buku besar serta neraca saldo
+<h1>SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web menggunakna framework codigniter yang mempunyai fitur jurnal umum, buku besar serta neraca saldo yang bisa didownload berupa file pdf </h1>
 <hr>
 <h3>Cara Install</h3>
 <ul>
