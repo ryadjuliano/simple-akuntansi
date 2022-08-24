@@ -1,4 +1,4 @@
-<h1>SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web menggunakna framework codigniter yang mempunyai fitur jurnal umum, buku besar serta neraca saldo yang bisa didownload berupa file pdf </h1>
+<h3>SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web menggunakna framework codigniter yang mempunyai fitur jurnal umum, buku besar serta neraca saldo yang bisa didownload berupa file pdf </h3>
 <hr>
 <h3>Cara Install</h3>
 <ul>
