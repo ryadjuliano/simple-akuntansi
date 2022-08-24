@@ -10,6 +10,6 @@ SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web yang mempunyai f
 <hr>
 <h3>Login</h3>
 <ul>
-<li>Username : hidayat</li>
+<li>Username : josse29</li>
 <li>password : 12345678</li>
 </u>
