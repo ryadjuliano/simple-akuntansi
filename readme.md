@@ -4,8 +4,9 @@ SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web yang mempunyai f
 <hr>
 <h3>Cara Install</h3>
 <ul>
-<li>jalan perintah pada prompt atau terminal composer install</li>
-<li>buat database siak, kemudian import database yang ada pada folder database</li>
+<li>Silakan download source code ini atau jalankan git clone pada terminal</li>
+<li>Buat database akuntansi di phpmyadmin, kemudian import database yang ada pada folder database</li>
+<li>Jika ada masalah silakan Dm di Ig:@pinemjosse </li>
 </ul>
 <hr>
 <h3>Login</h3>
