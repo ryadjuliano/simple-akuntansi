@@ -4,7 +4,7 @@
 <ul>
 <li>Silakan download source code ini atau jalankan git clone pada terminal </li>
 <li>Buat database umkm di phpmyadmin, kemudian import database yang ada pada folder database, yang judul filenya siak.sql</li>
-<li>Jika ada masalah silakan Dm di Ig:@pinemjosse </li>
+<li>Jika ada masalah silakan Dm di Ig:@pinemjosse  atau WA : 089524087023</li>
 </ul>
 <hr>
 <h3>Login</h3>
