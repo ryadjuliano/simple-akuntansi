@@ -2,7 +2,7 @@
 <hr>
 <h3>Cara Install atau download</h3>
 <ul>
-<li>Silakan download source code ini atau jalankan git clone pada terminal </li>
+<li>Silakan download source code ini ada [kotak berwarna hijau] atau jalankan git clone pada terminal </li>
 <li>Buat database umkm di phpmyadmin, kemudian import database yang ada pada folder database, yang judul filenya siak.sql</li>
 <li>Jika ada masalah silakan Dm di Ig:@pinemjosse  atau WA : 089524087023</li>
 </ul>
