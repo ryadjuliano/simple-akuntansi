@@ -1,8 +1,8 @@
-<h3>SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web menggunakna framework codigniter yang mempunyai fitur jurnal umum, buku besar serta neraca saldo yang bisa didownload berupa file pdf </h3>
+<h3>SIA atau Sistem Informasi Akuntansi yaitu aplikasi berbasis web menggunakan framework codeigniter yang mempunyai fitur jurnal umum, buku besar serta neraca saldo yang bisa didownload berupa file pdf </h3>
 <hr>
-<h3>Cara Install</h3>
+<h3>Cara Install atau download</h3>
 <ul>
-<li>Silakan download source code ini atau jalankan git clone pada terminal</li>
+<li>Silakan download source code ini atau jalankan git clone pada terminal </li>
 <li>Buat database umkm di phpmyadmin, kemudian import database yang ada pada folder database, yang judul filenya siak.sql</li>
 <li>Jika ada masalah silakan Dm di Ig:@pinemjosse </li>
 </ul>
