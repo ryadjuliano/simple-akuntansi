@@ -8,12 +8,6 @@
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="./index.html">Buku Besar</a>
-        <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            
-          </div>
-        </form>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
@@ -97,7 +91,8 @@
                               </div>
                             </div>
                             <p class="description">
-                              <table class="table align-items-center table-flush">
+                            <div class="table-responsive">  
+                              <table class="table align-items-center table-flush" id="akuntansi">
                                 <thead class="thead-light">
                                   <tr>
                                     <th rowspan="2">Tanggal</th>
@@ -113,17 +108,16 @@
                                 </thead>
                                 <tbody>
                                   <?php
-                                    for($j=0;$j<count($data[$i]);$j++):
+                                    for($j=0; $j<count($data[$i]); $j++):
                                       $timeStampt = strtotime($data[$i][$j]->tgl_transaksi);
                                       $bulan = date('m',$timeStampt);
-
                                       $tahun = date('Y',$timeStampt);
                                       $tgl = date('d',$timeStampt);
                                       $bulan = medium_bulan($bulan);
                                   ?>
                                   <tr>
                                       <td><?= $tgl.' '.$bulan.' '.$tahun ?></td>
-                                      <td><?= $data[$i][$j]->nama_reff ?></td>
+                                      <td><?= $data[$i][$j]->keterangan ?></td>
                                       <?php 
                                         if($data[$i][$j]->jenis_saldo=='debit'){
                                       ?>
@@ -171,6 +165,7 @@
                                   <?php } ?>
                                 </tbody>
                               </table>
+                            </div>
                         </div>
                         <?php endfor ?>
                     </div>

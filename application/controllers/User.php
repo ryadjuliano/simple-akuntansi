@@ -55,6 +55,7 @@ class User extends CI_Controller{
         return true;
     }
 
+    // isNoAkunThere berarti no akun sudah ada
     public function isNoAkunThere($str){
         $noAkun = $this->akun->countAkunByNoReff($str);
         if($noAkun >= 1){
@@ -70,14 +71,18 @@ class User extends CI_Controller{
         $action = 'data_akun/tambah';
         $content = 'user/form_akun';
 
-        if(!$_POST){
+        if(!$_POST)
+        {
             $data = (object) $this->akun->getDefaultValues();
-        }else{
+        }
+        else
+        {
             $data = (object) $this->input->post(null,true);
             $data->id_user = $this->session->userdata('id');
         }
 
-        if(!$this->akun->validate()){
+        if(!$this->akun->validate())
+        {
             $this->load->view('template',compact('content','title','action','data','titleTag'));
             return;
         }
@@ -93,14 +98,18 @@ class User extends CI_Controller{
         $action = 'data_akun/edit/'.$no_reff;
         $content = 'user/form_akun';
 
-        if(!$_POST){
+        if(!$_POST)
+        {
             $data = (object) $this->akun->getAkunByNo($no_reff);
-        }else{
+        }
+        else
+        {
             $data = (object) $this->input->post(null,true);
             $data->id_user = $this->session->userdata('id');
         }
 
-        if(!$this->akun->validate()){
+        if(!$this->akun->validate())
+        {
             $this->load->view('template',compact('content','title','action','data','titleTag'));
             return;
         }
@@ -113,7 +122,9 @@ class User extends CI_Controller{
     public function deleteAkun(){
         $id = $this->input->post('id',true);
         $noReffTransaksi = $this->jurnal->countJurnalNoReff($id);
-        if($noReffTransaksi >= 0 ){
+
+        if($noReffTransaksi >= 0 )
+        {
             $this->session->set_flashdata('dataNull','No.Reff '.$id.' Tidak Bisa Di Hapus Karena Data Akun Ada Di Jurnal Umum');
             redirect('data_akun');
         }
@@ -129,11 +140,9 @@ class User extends CI_Controller{
         $tahun = $this->jurnal->getJurnalByYear();
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
-
     public function jurnalUmumDetail(){
         $content = 'user/jurnal_umum';
         $titleTag = 'Jurnal Umum';
-
         $bulan = $this->input->post('bulan',true);
         $tahun = $this->input->post('tahun',true);
         $jurnals = null;
@@ -154,7 +163,8 @@ class User extends CI_Controller{
         $this->load->view('template',compact('content','jurnals','totalDebit','totalKredit','titleTag'));
     }
 
-    public function createJurnal(){
+    public function createJurnal()
+    {
         $title = 'Tambah'; 
         $content = 'user/form_jurnal'; 
         $action = 'jurnal_umum/tambah'; 
@@ -162,16 +172,21 @@ class User extends CI_Controller{
         $id_user = $this->session->userdata('id'); 
         $titleTag = 'Tambah Jurnal Umum';
 
-        if(!$_POST){
+        if(!$_POST)
+        {
             $data = (object) $this->jurnal->getDefaultValues();
-        }else{
-            $data = (object) [
+        }
+        else
+        {
+            $data = (object) 
+            [
                 'id_user'=>$id_user,
                 'no_reff'=>$this->input->post('no_reff',true),
                 'tgl_input'=>$tgl_input,
                 'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
-                'saldo'=>$this->input->post('saldo',true)
+                'saldo'=>$this->input->post('saldo',true),
+                'keterangan'=>$this->input->post('keterangan',true)
             ];
         }
 
@@ -208,7 +223,8 @@ class User extends CI_Controller{
                 'tgl_input'=>$tgl_input,
                 'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
-                'saldo'=>$this->input->post('saldo',true)
+                'saldo'=>$this->input->post('saldo',true),
+                'keterangan'=>$this->input->post('keterangan',true)
             ];
             $id = $this->input->post('id',true);
         }
@@ -223,14 +239,16 @@ class User extends CI_Controller{
         redirect('jurnal_umum');    
     }
 
-    public function deleteJurnal(){
+    public function deleteJurnal()
+    {
         $id = $this->input->post('id',true);
         $this->jurnal->deleteJurnal($id);
         $this->session->set_flashdata('berhasilHapus','Data Jurnal berhasil di hapus');
         redirect('jurnal_umum');
     }
 
-    public function bukuBesar(){
+    public function bukuBesar()
+    {
         $titleTag = 'Buku Besar';
         $content = 'user/buku_besar_main';
         $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
@@ -238,10 +256,11 @@ class User extends CI_Controller{
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
 
-    public function bukuBesarDetail(){
+    public function bukuBesarDetail()
+    {
+        
         $content = 'user/buku_besar';
         $titleTag = 'Buku Besar';
-        
         $bulan = $this->input->post('bulan',true);
         $tahun = $this->input->post('tahun',true);
 
@@ -268,18 +287,17 @@ class User extends CI_Controller{
         $this->load->view('template',compact('content','titleTag','dataAkun','data','jumlah','saldo'));
     }
 
-    public function neracaSaldo(){
+    public function neracaSaldo()
+    {
         $titleTag = 'Neraca Saldo';
         $content = 'user/neraca_saldo_main';
         $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
         $tahun = $this->jurnal->getJurnalByYear();
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
-
     public function neracaSaldoDetail(){
         $content = 'user/neraca_saldo';
         $titleTag = 'Neraca Saldo';
-
         $bulan = $this->input->post('bulan',true);
         $tahun = $this->input->post('tahun',true);
 
@@ -295,57 +313,12 @@ class User extends CI_Controller{
             $data[] = (array) $this->jurnal->getJurnalByNoReffMonthYear($row->no_reff,$bulan,$tahun);
             $saldo[] = (array) $this->jurnal->getJurnalByNoReffSaldoMonthYear($row->no_reff,$bulan,$tahun);
         }
-
         if($data == null || $saldo == null){
             $this->session->set_flashdata('dataNull','Neraca Saldo Dengan Bulan '.bulan($bulan).' Pada Tahun '.date('Y',strtotime($tahun)).' Tidak Di Temukan');
             redirect('neraca_saldo');
         }
-
         $jumlah = count($data);
-
         $this->load->view('template',compact('content','titleTag','dataAkun','data','jumlah','saldo'));
-    }
-
-    public function laporan(){
-        $titleTag = 'Laporan';
-        $content = 'user/laporan_main';
-        $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
-        $tahun = $this->jurnal->getJurnalByYear();
-        $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
-    }
-
-    public function laporanCetak(){
-        $bulan = $this->input->post('bulan',true);
-        $tahun = $this->input->post('tahun',true);
-        $titleTag = 'Laporan '.bulan($bulan).' '.$tahun;
-
-        $dataAkun = $this->akun->getAkunByMonthYear($bulan,$tahun);
-
-        $jurnals = $this->jurnal->getJurnalJoinAkunDetail($bulan,$tahun);
-        $totalDebit = $this->jurnal->getTotalSaldoDetail('debit',$bulan,$tahun);
-        $totalKredit = $this->jurnal->getTotalSaldoDetail('kredit',$bulan,$tahun);
-
-        $data = null;
-        $saldo = null;
-        foreach($dataAkun as $row){
-            $data[] = (array) $this->jurnal->getJurnalByNoReffMonthYear($row->no_reff,$bulan,$tahun);
-            $saldo[] = (array) $this->jurnal->getJurnalByNoReffSaldoMonthYear($row->no_reff,$bulan,$tahun);
-        }
-
-        if($data == null || $saldo == null){
-            $this->session->set_flashdata('dataNull','Laporan Dengan Bulan '.bulan($bulan).' Pada Tahun '.date('Y',strtotime($tahun)).' Tidak Di Temukan');
-            redirect('laporan');
-        }
-
-        $jumlah = count($data);
-
-        $data = $this->load->view('user/laporan',compact('titleTag','dataAkun','bulan','tahun','jurnals','totalDebit','totalKredit','data','saldo','jumlah'),true);
-        // echo $data;
-        // die();
-        $this->load->library('pdf');
-        $this->pdf->setPaper('A4', 'landscape');
-        $this->pdf->filename = "laporan_".bulan($bulan).'_'.$tahun;
-        $this->pdf->load_view('user/laporan', $data);
     }
 
     public function logout(){

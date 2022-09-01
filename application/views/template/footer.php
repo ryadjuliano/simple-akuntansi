@@ -60,7 +60,7 @@
         swal('Oops!',pesan,'error');
       });
     </script>
-  <?php endif; ?>  
+  <?php endif; ?>
 </body>
 
 </html>

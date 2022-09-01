@@ -54,7 +54,7 @@ class Jurnal_model extends CI_Model{
     }
 
     public function getJurnalByNoReff($noReff){
-        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input')
+        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input,transaksi.keterangan')
                     ->from($this->table)            
                     ->where('transaksi.no_reff',$noReff)
                     ->join('akun','transaksi.no_reff = akun.no_reff')
@@ -64,7 +64,7 @@ class Jurnal_model extends CI_Model{
     }
 
     public function getJurnalByNoReffMonthYear($noReff,$bulan,$tahun){
-        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input')
+        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input,,transaksi.keterangan')
                     ->from($this->table)            
                     ->where('transaksi.no_reff',$noReff)
                     ->where('month(transaksi.tgl_transaksi)',$bulan)
@@ -98,18 +98,19 @@ class Jurnal_model extends CI_Model{
     }
 
     public function getJurnalJoinAkun(){
-        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input')
+        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input,transaksi.keterangan,')
                         ->from($this->table)
                         ->join('akun','transaksi.no_reff = akun.no_reff')
                         ->order_by('tgl_transaksi','ASC')
                         ->order_by('tgl_input','ASC')
                         ->order_by('jenis_saldo','ASC')
+                        ->order_by('keterangan','ASC')
                         ->get()
                         ->result();
     }
 
     public function getJurnalJoinAkunDetail($bulan,$tahun){
-        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input')
+        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input,transaksi.keterangan,')
                         ->from($this->table)
                         ->where('month(transaksi.tgl_transaksi)',$bulan)
                         ->where('year(transaksi.tgl_transaksi)',$tahun)
@@ -117,6 +118,7 @@ class Jurnal_model extends CI_Model{
                         ->order_by('tgl_transaksi','ASC')
                         ->order_by('tgl_input','ASC')
                         ->order_by('jenis_saldo','ASC')
+                        ->order_by('keterangan','ASC')
                         ->get()
                         ->result();
     }
@@ -157,6 +159,7 @@ class Jurnal_model extends CI_Model{
             'no_reff'=>'',
             'jenis_saldo'=>'',
             'saldo'=>'',
+            'keterangan'=>'',
         ];
     }
 
@@ -182,10 +185,16 @@ class Jurnal_model extends CI_Model{
                 'label'=>'Saldo',
                 'rules'=>'trim|required|numeric'
             ],
+            [
+                'field'=>'keterangan',
+                'label'=>'keterangan',
+                'rules'=>'trim|required'
+            ]
         ];
     }
 
-    public function validate(){
+    public function validate()
+    {
         $rules = $this->getValidationRules();
         $this->form_validation->set_rules($rules);
         $this->form_validation->set_error_delimiters('<span class="text-danger" style="font-size:14px">','</span>');

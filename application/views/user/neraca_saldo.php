@@ -58,7 +58,7 @@
                 </div>
               </div>
             </div>
-            <div class="table-responsive">
+            <div class="table-responsive" >
             <?php 
                 $a=0;
                 $debit = 0;

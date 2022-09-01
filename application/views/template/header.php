@@ -100,8 +100,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('laporan') ?>">
-            <i class="fas fa-file-pdf text-red"></i>Laporan
+            <a class="nav-link" href="https://wa.link/2s7u5m">
+            <i class="fas fa-phone text-red"></i> Informasi
             </a>
           </li>
         </ul>

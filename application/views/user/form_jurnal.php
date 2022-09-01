@@ -36,11 +36,7 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--7">
-      <div class="row">
-        <div class="col-xl-8 mb-5 mb-xl-0">       
-        </div>
-      </div>
+    <div class="container-fluid mt--8">
       <div class="row mt-5">
         <div class="col mb-5 mb-xl-0">
           <div class="card shadow">
@@ -57,7 +53,7 @@
                   <input type="hidden" name="id" value="<?= $id ?>">
                   <?php endif; ?>
                   <div class="row mb-4">
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <label for="datepicker">Tanggal</label>
                         <div class="input-group input-group-alternative">
                             <div class="input-group-prepend">
@@ -67,30 +63,35 @@
                         </div>
                         <?= form_error('tgl_transaksi') ?>
                     </div>
-                  </div>
-                  <div class="row mb-4">
-                    <div class="col">
-                        <label for="no_reff">Nama Akun</label>
+                    <div class="col-md-4">
+                        <label for="no_reff">Nama Akun : </label>
                         <?=form_dropdown('no_reff',getDropdownList('akun',['no_reff','nama_reff']),$data->no_reff,['class'=>'form-control','id'=>'no_reff']);?>
                         <?= form_error('no_reff') ?>
-                    </div>
-                    <div class="col">
-                        <label for="reff">No. Reff</label>
+                    </div>                    
+                    <div class="col-md-4">
+                        <label for="reff">No. Reff : </label>
                         <input type="text" name="reff" class="form-control" id="reff" readonly>
                     </div>
-                    <div class="col">
-                        <label for="jenis_saldo">Jenis Saldo</label>
+                  </div>
+                  <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="jenis_saldo">Jenis Saldo : </label>
                         <?=form_dropdown('jenis_saldo',['debit'=>'Debit','kredit'=>'Kredit'],$data->jenis_saldo,['class'=>'form-control jenis_saldo','id'=>'jenis_saldo']);?>
                         <?= form_error('jenis_saldo') ?>
                     </div>
-                    <div class="col">
-                        <label for="saldo">Saldo</label>
+                    <div class="col-md-4">
+                        <label for="saldo">Saldo : </label>
                         <input type="text" name="saldo" class="form-control saldo" id="saldo" value="<?= $data->saldo ?>">
                         <?= form_error('saldo') ?>
                     </div>
+                    <div class="col-md-4">
+                        <label for="keterangan">Keterangan</label>
+                        <input type="text" name="keterangan" class="form-control keterangan" id="keterangan" value="<?= $data->keterangan ?>" >
+                        <?= form_error('keterangan') ?>
+                    </div>
                   </div>
                   <div class="col-12" id="form_jurnal_prepend">
-                    <button class="btn btn-primary" type="submit" id="button_jurnal"><?= $title ?></button>
+                    <button class="btn btn-primary float-right" type="submit" id="button_jurnal"><?= $title ?></button>
                   </div> 
                   </form> 
                 </div>
@@ -99,4 +100,3 @@
           </div>
         </div>
       </div>
-      

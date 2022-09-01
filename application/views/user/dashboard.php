@@ -5,12 +5,6 @@
       <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Dashboard</a>
-        <!-- Form -->
-        <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
-          <div class="form-group mb-0">
-            
-          </div>
-        </form>
         <!-- User -->
         <ul class="navbar-nav align-items-center d-none d-md-flex">
           <li class="nav-item dropdown">
@@ -42,16 +36,14 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--7">
-      <div class="row">
-      </div>
+    <div class="container-fluid mt--8">
       <div class="row mt-5">
         <div class="col mb-5">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Data Akun</h3>
+                  <h3 class="mb-0 text-right">Data Akun</h3>
                 </div>
               </div>
             </div>
@@ -96,7 +88,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Jurnal Umum</h3>
+                  <h3 class="mb-0 text-right">Jurnal Umum</h3>
                 </div>
               </div>
             </div>
@@ -110,6 +102,7 @@
                     <th scope="col">Ref</th>
                     <th scope="col">Debet</th>
                     <th scope="col">Kredit</th>
+                    <th scope="col">Keterangan</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -122,16 +115,19 @@
                       <?= date_indo($row->tgl_transaksi) ?>
                     </td>
                     <td>
-                    <?= $row->nama_reff ?>
+                      <?= $row->nama_reff ?>
                     </td>
                     <td>
-                    <?= $row->no_reff ?>
+                      <?= $row->no_reff ?>
                     </td>
                     <td>
-                    <?= 'Rp. '.number_format($row->saldo,0,',','.') ?>
+                      <?= 'Rp. '.number_format($row->saldo,0,',','.') ?>
                     </td>
                     <td>
                       Rp. 0
+                    </td>
+                    <td>
+                      <?= $row->keterangan ?>
                     </td>
                   </tr>
                   <?php 
@@ -149,7 +145,10 @@
                     </td>
                     <td>
                     <?= 'Rp. '.number_format($row->saldo,0,',','.') ?>
-                    </td>           
+                    </td> 
+                    <td>
+                      <?= $row->keterangan ?>
+                    </td>          
                   </tr>  
                   <?php endif;?>
                   <?php endforeach ?>
@@ -181,7 +180,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Buku Besar</h3>
+                  <h3 class="mb-0 text-right">Buku Besar</h3>
                 </div>
               </div>
             </div>
@@ -221,6 +220,7 @@
                               </div>
                             </div>
                             <p class="description">
+                            <div class="table-responsive">
                               <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                   <tr>
@@ -231,8 +231,8 @@
                                     <th colspan="2" class="text-center">Saldo</th>
                                   </tr>
                                   <tr>
-                                    <th>Debit</th>
-                                    <th>Kredit</th>
+                                    <th class="text-center">Debit</th>
+                                    <th class="text-center">Kredit</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -247,7 +247,7 @@
                                   ?>
                                   <tr>
                                       <td><?= $tgl.' '.$bulan.' '.$tahun ?></td>
-                                      <td><?= $data[$i][$j]->nama_reff ?></td>
+                                      <td><?= $data[$i][$j]->keterangan ?></td>
                                       <?php 
                                         if($data[$i][$j]->jenis_saldo=='debit'){
                                       ?>
@@ -295,6 +295,7 @@
                                   <?php } ?>
                                 </tbody>
                               </table>
+                            </div>
                         </div>
                         <?php endfor ?>
                       </div>
@@ -306,7 +307,7 @@
                     <div class="card-header border-0">
                       <div class="row align-items-center">
                         <div class="col">
-                          <h3 class="mb-0">Neraca Saldo</h3>
+                          <h3 class="mb-0 text-right">Neraca Saldo</h3>
                         </div>
                       </div>
                     </div>
@@ -316,14 +317,14 @@
                 $debit = 0;
                 $kredit = 0;
             ?>
-              <!-- Projects table -->
+              <!-- Projects table Neraca Saldo -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">No. Akun</th>
-                    <th scope="col">Nama Akun</th>
-                    <th scope="col">Debit</th>
-                    <th scope="col">Kredit</th>
+                    <th scope="col" class="text-center">No. Akun</th>
+                    <th scope="col" class="text-center">Nama Akun</th>
+                    <th scope="col" class="text-center">Debit</th>
+                    <th scope="col" class="text-center">Kredit</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -336,10 +337,10 @@
                             $deb = $saldo[$i];
                     ?>
                     <tr>
-                        <td>
+                        <td class="text-center">
                             <?= $data[$i][$s]->no_reff ?>
                         </td>
-                        <td>
+                        <td >
                             <?= $data[$i][$s]->nama_reff ?>
                         </td>
                         <?php 
