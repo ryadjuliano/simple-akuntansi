@@ -44,43 +44,16 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0 text-right">Data Akun</h3>
+                  <h3 class="mb-0 text-right">Jurnal Umum</h3>
                 </div>
               </div>
             </div>
             <div class="table-responsive">
               <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">No.Reff</th>
-                    <th scope="col">Nama Reff</th>
-                    <th scope="col">Keterangan Reff</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php 
-                    $i=1;
-                    foreach($dataAkun as $row): 
-                  ?>
-                  <tr>
-                    <th scope="row">
-                      <?= $i++ ?>
-                    </th>
-                    <td>
-                      <?= $row->no_reff ?>
-                    </td>
-                    <td>
-                      <?= $row->nama_reff ?>
-                    </td>
-                    <td>
-                      <?= $row->keterangan ?>
-                    </td>
-                  </tr>
-                <?php endforeach; ?>
-                </tbody>
-              </table>
+              <div class="p-4">
+                    <h4 class="text-center">Grafik Debit dan Kredit per Akun (Dummy Data)</h4>
+                    <canvas id="jurnalChart" style="max-height: 400px;"></canvas>
+                </div>
             </div>
           </div>
         </div>
@@ -393,3 +366,87 @@
               </table>
             </div>
     </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  // Dummy data untuk grafik
+  const jurnalData = [
+    { nama_reff: 'Kas', debit: 5000000, kredit: 1000000 },
+    { nama_reff: 'Piutang Usaha', debit: 3000000, kredit: 500000 },
+    { nama_reff: 'Utang Usaha', debit: 0, kredit: 4000000 },
+    { nama_reff: 'Pendapatan', debit: 200000, kredit: 6000000 },
+    { nama_reff: 'Beban Operasional', debit: 2500000, kredit: 0 }
+  ];
+
+  // Siapkan data untuk Chart.js
+  const labels = jurnalData.map(item => item.nama_reff);
+  const debitData = jurnalData.map(item => item.debit);
+  const kreditData = jurnalData.map(item => item.kredit);
+
+  // Buat barchart
+  const ctx = document.getElementById('jurnalChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Debit',
+          data: debitData,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Kredit',
+          data: kreditData,
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Nominal (Rp)'
+          },
+          ticks: {
+            callback: function(value) {
+              return 'Rp ' + value.toLocaleString('id-ID');
+            }
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Nama Akun'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              label += 'Rp ' + context.parsed.y.toLocaleString('id-ID');
+              return label;
+            }
+          }
+        }
+      }
+    }
+  });
+</script>

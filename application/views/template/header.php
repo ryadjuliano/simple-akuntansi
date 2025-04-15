@@ -99,11 +99,11 @@
             <i class="ni ni-book-bookmark text-yellow"></i> Neraca Saldo
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="https://wa.link/2s7u5m">
             <i class="fas fa-phone text-red"></i> Informasi
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>

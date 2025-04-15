@@ -17,7 +17,7 @@ class User extends CI_Controller{
 
     public function index(){
         $titleTag = 'Dashboard';
-        $content = 'user/dashboard';
+        $content = 'user/dashboard_grafik';
         $dataAkun = $this->akun->getAkun();
         $dataAkunTransaksi = $this->jurnal->getAkunInJurnal();
         

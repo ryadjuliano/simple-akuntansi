@@ -17,30 +17,33 @@ class Jurnal_model extends CI_Model{
     }
 
     public function getJurnalByYear(){
-        return $this->db->select('tgl_transaksi')
+        return $this->db->select('YEAR(tgl_transaksi) AS tahun, MIN(tgl_transaksi) AS tgl_awal')
                         ->from($this->table)
-                        ->group_by('year(tgl_transaksi)')
+                        ->group_by('tahun')
                         ->get()
                         ->result();
     }
+    
 
     public function getJurnalByYearAndMonth(){
-        return $this->db->select('tgl_transaksi')
+        return $this->db->select('YEAR(tgl_transaksi) AS tahun, MONTH(tgl_transaksi) AS bulan, MIN(tgl_transaksi) AS tgl_transaksi')
                         ->from($this->table)
-                        ->group_by('month(tgl_transaksi)')
-                        ->group_by('year(tgl_transaksi)')
+                        ->group_by('YEAR(tgl_transaksi), MONTH(tgl_transaksi)')
                         ->get()
                         ->result();
     }
+    
 
-    public function getAkunInJurnal(){
-        return $this->db->select('transaksi.no_reff,akun.no_reff,akun.nama_reff')
-                    ->from($this->table)            
-                    ->join('akun','transaksi.no_reff = akun.no_reff')
-                    ->order_by('akun.no_reff','ASC')
-                    ->group_by('akun.nama_reff')
-                    ->get()
-                    ->result();
+    
+
+    public function getAkunInJurnal() {
+        return $this->db->select('transaksi.no_reff, akun.no_reff, akun.nama_reff')
+                        ->from('transaksi')            
+                        ->join('akun', 'transaksi.no_reff = akun.no_reff')
+                        ->group_by(['transaksi.no_reff', 'akun.no_reff', 'akun.nama_reff']) // Perbaikan di sini
+                        ->order_by('akun.no_reff', 'ASC')
+                        ->get()
+                        ->result();
     }
 
     public function countAkunInJurnal(){

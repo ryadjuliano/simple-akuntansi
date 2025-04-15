@@ -3,7 +3,7 @@
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2022 <a class="font-weight-bold ml-1" target="_blank">Josse Surya Pinem</a>
+              &copy; <?php echo date('Y');?> <a class="font-weight-bold ml-1" target="_blank">Iamindonesia</a>
             </div>
           </div>
         </div>
@@ -13,6 +13,7 @@
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="<?= base_url('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
   <script src="<?= base_url('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
   <!-- Optional JS -->
   <script src="<?= base_url('assets/vendor/chart.js/dist/Chart.min.js') ?>"></script>
