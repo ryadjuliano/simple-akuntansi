@@ -60,7 +60,9 @@ $route['dashboard'] = 'user/index';
 
 // DATA AKUN
 $route['data_akun'] = 'user/dataAkun';
+$route['data_kategori'] = 'user/getKategori';
 $route['data_akun/tambah'] = 'user/createAkun';
+$route['data_akunsub/tambah'] = 'user/createAkunSub';
 $route['data_akun/edit/(:num)'] = 'user/editAkun/$1';
 $route['data_akun/hapus'] = 'user/deleteAkun';
 
@@ -71,6 +73,10 @@ $route['jurnal_umum/tambah'] = 'user/createJurnal';
 $route['jurnal_umum/edit'] = 'user/editJurnal';
 $route['jurnal_umum/edit_form'] = 'user/editForm';
 $route['jurnal_umum/hapus'] = 'user/deleteJurnal';
+$route['kas'] = 'user/kas';
+// json
+
+$route['kategori/getter'] = 'user/get_subkategori';
 
 // BUKU BESAR
 $route['buku_besar'] = 'user/bukuBesar';
@@ -83,6 +89,8 @@ $route['neraca_saldo/detail'] = 'user/neracaSaldoDetail';
 // LAPORAN
 $route['laporan'] = 'user/laporan';
 $route['laporan/cetak'] = 'user/laporanCetak';
+$route['laporan/laba'] = 'user/LaporanLaba';
+
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

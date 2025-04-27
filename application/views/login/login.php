@@ -1,141 +1,91 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SIA | Login</title>
-    <!-- Favicon -->
-    <link href="<?= base_url('assets/img/brand/favicon.png')?>" rel="icon" type="image/png">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <style>
-        body {
-            background: linear-gradient(135deg,rgb(236, 236, 236) 0%,rgb(0, 8, 241) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
-        }
-        .login-container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .login-card {
-            background: white;
-            border-radius: 1rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            border: none;
-        }
-        .logo {
-            max-width: 120px;
-            margin: 0 auto 1.5rem;
-            display: block;
-        }
-        .form-control {
-            border-radius: 0.5rem;
-            border: 1px solid #e5e7eb;
-            padding: 0.75rem 1rem;
-            transition: all 0.2s ease;
-        }
-        .form-control:focus {
-            border-color: #6366f1;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-        }
-        .btn-primary {
-            background: #6366f1;
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.75rem;
-            width: 100%;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-        .btn-primary:hover {
-            background: #4f46e5;
-            transform: translateY(-1px);
-        }
-        .form-label {
-            color: #374151;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-        }
-        .checkbox-label {
-            color: #6b7280;
-            font-size: 0.875rem;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <title>
+    Iam Indonesia | GJI Dashboard
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- CSS Files -->
+  <link id="pagestyle" href="<?= base_url('assets/css/argon-dashboard.css?v=2.1.0') ?>" rel="stylesheet" />
 </head>
-<body>
-    <div class="login-container">
-        <div class="login-card">
-            <!-- Logo -->
-            <img src="<?= base_url('assets/img/brand/logo.png')?>" alt="Gurindam Jaya" class="logo">
-            
-            <form role="form" action="<?= base_url('login') ?>" method="post">
-                <div class="mb-4">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" 
-                           placeholder="Enter username" value="<?= $data->username ?>" required>
+
+<body class="">
+  <main class="main-content  mt-0">
+    <section>
+      <div class="page-header min-vh-100">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
+              <div class="card card-plain">
+                <div class="card-header pb-0 text-start">
+                  <h4 class="font-weight-bolder">Sign In</h4>
+                  <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
-                
-                <div class="mb-4">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" 
+                <div class="card-body">
+                  <!-- <form role="form"> -->
+                  <form role="form" action="<?= base_url('login') ?>" method="post">
+                    <div class="mb-3">
+                      <!-- <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email"> -->
+                      <input type="text" class="form-control form-control-lg"  id="username" name="username" 
+                      placeholder="Enter username" value="<?= $data->username ?>" required>
+                    </div>
+                    <div class="mb-3">
+                    <input type="password"class="form-control form-control-lg"  id="password" name="password" 
                            placeholder="Enter password" value="<?= $data->password ?>" required>
+      
+                    </div>
+                    
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-lg btn-warning btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    </div>
+                  </form>
                 </div>
-                
-                <div class="mb-4 form-check">
-                    <input type="checkbox" class="form-check-input" id="rememberMe">
-                    <label class="form-check-label checkbox-label" for="rememberMe">Remember me</label>
-                </div>
-                
-                <button type="submit" class="btn btn-primary">Sign In</button>
-            </form>
+               
+              </div>
+            </div>
+            <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
+              <div class="position-relative bg-gradient-warning h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden" style="background-image: url('https://raw.githubusercontent.com/kkk/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg');
+          background-size: cover;">
+                <span class="mask bg-gradient-warning opacity-6"></span>
+                <h4 class="mt-5 text-white font-weight-bolder position-relative">"Selamat Datang di GJI Dashboard"</h4>
+                <p class="text-white position-relative">Kelola pemasukan dan pengeluaran PT Gurindam Jaya Indonesia dengan mudah dan efisien..</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('assets/vendor/sweetalert/sweetalert2.all.min.js') ?>"></script>
-
-    <?php
-    $formErrorUsername = form_error('username');
-    $formErrorPassword = form_error('password');
-    if(!empty($formErrorUsername) || !empty($formErrorPassword)):
-    ?>
-    <script>
-        $(window).on('load', function(){
-            let pesan = "<?= $formErrorUsername ?> \n <?= $formErrorPassword ?>";
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops!',
-                text: pesan
-            });
-        });
-    </script>
-    <?php endif; ?>
-
-    <?php
-    $pesan = $this->session->flashdata('pesan_error');
-    if(!empty($pesan)):
-    ?>
-    <script>
-        $(window).on('load', function(){
-            let pesan = "<?= $pesan ?>";
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops!',
-                text: pesan
-            });
-        });
-    </script>
-    <?php endif; ?>
+      </div>
+    </section>
+  </main>
+  <!--   Core JS Files   -->
+  <script src="<?= base_url('assets//js/core/popper.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/core/bootstrap.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <!-- <script src="../assets/js/argon-dashboard.min.js?v=2.1.0"></script> -->
 </body>
+
 </html>

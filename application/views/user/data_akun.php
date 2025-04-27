@@ -63,7 +63,7 @@
             </div>
             <div class="table-responsive">
               <!-- Projects table -->
-              <table class="table align-items-center table-flush" >
+              <table id="myTable" class="table table-striped">
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">No.</th>
@@ -79,22 +79,14 @@
                     foreach($dataAkun as $row): 
                   ?>
                   <tr>
-                    <td>
-                      <?= $no++ ?>
-                    </td>
-                    <td>
-                      <?= $row->no_reff ?>
-                    </td>
-                    <td>
-                    <?= $row->nama_reff ?>
-                    </td>
-                    <td>
-                    <?= $row->keterangan ?>
-                    </td>
-                    <td class="d-flex justify-content-center">
-                        <a href="<?= base_url('data_akun/edit/'.$row->no_reff) ?>" class="btn btn-warning mb-4">Edit</a>
-                        <?= form_open('data_akun/hapus',['class'=>'form'],['id'=>$row->no_reff]) ?>
-                        <?= form_button(['type'=>'submit','content'=>'Hapus','class'=>'btn btn-danger hapus']) ?>
+                    <td><?= $no+1 ?></td>
+                    <td><?= $row->no_reff ?></td>
+                    <td><?= $row->nama_reff ?></td>
+                    <td><?= $row->keterangan ?></td>
+                    <td class="text-center">
+                        <a href="<?= base_url('data_akun/edit/'.$row->no_reff) ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <?= form_open('data_akun/hapus',['class'=>'d-inline'],['id'=>$row->no_reff]) ?>
+                        <?= form_button(['type'=>'submit','content'=>'Hapus','class'=>'btn btn-danger btn-sm hapus']) ?>
                         <?= form_close() ?>
                     </td>
                   </tr> 
@@ -102,6 +94,7 @@
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
       </div>

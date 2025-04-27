@@ -126,6 +126,20 @@ class Jurnal_model extends CI_Model{
                         ->result();
     }
 
+    public function getJurnalJoinAkunDetailMonthly($bulan){
+        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input,transaksi.keterangan,akun_sub.nama_reff_sub,akun_sub.keterangan as keteranganDetail')
+                        ->from($this->table)
+                        ->where('month(transaksi.tgl_transaksi)',$bulan)
+                        ->join('akun','transaksi.no_reff = akun.no_reff')
+                        ->join('akun_sub','akun_sub.no_reff = akun.no_reff')
+                        ->order_by('tgl_transaksi','ASC')
+                        ->order_by('tgl_input','ASC')
+                        ->order_by('jenis_saldo','ASC')
+                        ->order_by('keterangan','ASC')
+                        ->get()
+                        ->result();
+    }
+
     public function getTotalSaldoDetail($jenis_saldo,$bulan,$tahun){
         return $this->db->select_sum('saldo')
                         ->from($this->table)
@@ -203,4 +217,6 @@ class Jurnal_model extends CI_Model{
         $this->form_validation->set_error_delimiters('<span class="text-danger" style="font-size:14px">','</span>');
         return $this->form_validation->run();
     }
+
+ 
 }

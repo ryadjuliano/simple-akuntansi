@@ -40,10 +40,18 @@ class User extends CI_Controller{
     }
 
     public function dataAkun(){
-        $content = 'user/data_akun';
+        $content = 'income/kategori';
         $titleTag = 'Data Akun';
         $dataAkun = $this->akun->getAkun();
         $this->load->view('template',compact('content','dataAkun','titleTag'));
+    }
+    
+    public function getKategori() {
+        $dataAkun = $this->akun->getAkunWithSub();
+       
+        // $data['kategori'] = $this->akun->getKategori(); // method baru ambil data kategori
+        $content = 'income/subkategori';
+        $this->load->view('template',compact('content','dataAkun'));
     }
 
     public function isNamaAkunThere($str){
@@ -83,10 +91,9 @@ class User extends CI_Controller{
 
         if(!$this->akun->validate())
         {
-            $this->load->view('template',compact('content','title','action','data','titleTag'));
+            // $this->load->view('template',compact('content','title','action','data','titleTag'));
             return;
         }
-        
         $this->akun->insertAkun($data);
         $this->session->set_flashdata('berhasil','Data Akun Berhasil Di Tambahkan');
         redirect('data_akun');
@@ -133,11 +140,39 @@ class User extends CI_Controller{
         redirect('data_akun');
     }
 
+
+    public function createAkunSub(){
+        // $title = 'Tambah';
+        // $titleTag = 'Tambah Data Akun';
+        // $action = 'data_akunsub/tambah';
+        // $content = 'user/form_akun';
+
+        if(!$_POST)
+        {
+            $data = (object) $this->akun->getDefaultValues();
+        }
+        else
+        {
+            $data = (object) $this->input->post(null,true);
+            $data->id_user = $this->session->userdata('id');
+        }
+
+        
+        $this->akun->insertAkunSub($data);
+        $this->session->set_flashdata('berhasil','Data Akun Berhasil Di Tambahkan');
+        redirect('data_kategori');
+    }
+
     public function jurnalUmum(){
         $titleTag = 'Jurnal Umum';
-        $content = 'user/jurnal_umum_main';
-        $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
+        $content = 'transaksi/view';
+        // $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
         $tahun = $this->jurnal->getJurnalByYear();
+        $bulan = date('m');
+        $listJurnal = $this->jurnal->getJurnalJoinAkunDetailMonthly($bulan);
+        // echo '<pre>';
+        // print_r($listJurnal);
+        // die();
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
     public function jurnalUmumDetail(){
@@ -166,11 +201,47 @@ class User extends CI_Controller{
     public function createJurnal()
     {
         $title = 'Tambah'; 
-        $content = 'user/form_jurnal'; 
+        $content = 'transaksi/create'; 
         $action = 'jurnal_umum/tambah'; 
         $tgl_input = date('Y-m-d H:i:s'); 
         $id_user = $this->session->userdata('id'); 
         $titleTag = 'Tambah Jurnal Umum';
+
+        if(!$_POST)
+        {
+            $data = (object) $this->jurnal->getDefaultValues();
+        }
+        else
+        {
+            $data = (object) 
+            [
+                'id_user'=>$id_user,
+                'no_reff'=>$this->input->post('no_reff',true),
+                'tgl_input'=>$tgl_input,
+                'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
+                'jenis_saldo'=>$this->input->post('jenis_saldo',true),
+                'saldo'=>$this->input->post('saldo',true),
+                'keterangan'=>$this->input->post('keterangan',true)
+            ];
+        }
+
+        if(!$this->jurnal->validate()){
+            $this->load->view('template',compact('content','title','action','data','titleTag'));
+            return;
+        }
+        
+        $this->jurnal->insertJurnal($data);
+        $this->session->set_flashdata('berhasil','Data Jurnal Berhasil Di Tambahkan');
+        redirect('jurnal_umum');    
+    }
+    public function kas()
+    {
+        $title = 'Tambah'; 
+        $content = 'transaksi/kas'; 
+        $action = 'create/kas'; 
+        $tgl_input = date('Y-m-d H:i:s'); 
+        $id_user = $this->session->userdata('id'); 
+        $titleTag = 'Tambah Jur';
 
         if(!$_POST)
         {
@@ -325,4 +396,20 @@ class User extends CI_Controller{
         $this->user->logout();
         redirect('');
     }
+
+    public function get_subkategori()
+    {
+        $id_kategori = $this->input->post('id_kategori');
+        // echo $id_kategori;
+        $subkategori = $this->akun->getSubKategoriByNoReff($id_kategori);
+        echo json_encode($subkategori);
+    }
+
+    public function LaporanLaba(){
+        $content = 'laporan/laporan_laba';
+        $titleTag = 'Data Akun';
+        $dataAkun = $this->akun->getAkun();
+        $this->load->view('template',compact('content','dataAkun','titleTag'));
+    }
+    
 }
