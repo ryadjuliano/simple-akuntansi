@@ -403,10 +403,11 @@ class User extends CI_Controller{
 
     public function get_subkategori()
     {
-        header('Content-Type: application/json');
+       
         $id_kategori = $this->input->post('id_kategori');
         // echo $id_kategori;
         $subkategori = $this->akun->getSubKategoriByNoReff($id_kategori);
+        header('Content-Type: application/json');
         echo json_encode($subkategori);
     }
 
