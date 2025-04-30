@@ -198,5 +198,40 @@ document.addEventListener('DOMContentLoaded', function () {
 	});
   
 	// Expenses Bar Chart
-
+	const ctxExpenses = document.getElementById('chart-expenses').getContext('2d');
+	new Chart(ctxExpenses, {
+	  type: 'bar',
+	  data: {
+		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+		datasets: [{
+		  label: 'Pengeluaran (Rp Juta)',
+		  data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
+		  backgroundColor: 'rgba(255, 99, 132, 0.2)',
+		  borderColor: 'rgba(255, 99, 132, 1)',
+		  borderWidth: 1
+		}]
+	  },
+	  options: {
+		scales: {
+		  y: {
+			beginAtZero: true,
+			title: {
+			  display: true,
+			  text: 'Jumlah (Rp Juta)'
+			}
+		  },
+		  x: {
+			title: {
+			  display: true,
+			  text: 'Bulan'
+			}
+		  }
+		},
+		plugins: {
+		  legend: {
+			display: true
+		  }
+		}
+	  }
+	});
   });
