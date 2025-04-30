@@ -85,8 +85,13 @@
     <div class="collapse" id="TrasaksiMenu">
       <ul class="nav ms-4">
         <li class="nav-item">
-          <a class="nav-link" href="<?= base_url('jurnal_umum/tambah') ?>">
+          <a class="nav-link" href="<?= base_url('jurnal_umum') ?>">
             <span class="sidenav-normal">Transaksi</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('jurnal_umum/tambah') ?>">
+            <span class="sidenav-normal">Tambah Transaksi</span>
           </a>
         </li>
         <li class="nav-item">

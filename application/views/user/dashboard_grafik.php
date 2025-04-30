@@ -221,7 +221,7 @@
       </div>
       <div class="card-body p-3">
         <div class="chart">
-          <canvas id="chart-revenue" class="chart-canvas" height="200"></canvas>
+          <canvas id="chart-combine" class="chart-canvas" height="200"></canvas>
         </div>
       </div>
     </div>
@@ -383,7 +383,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
+        <!-- <div class="col-lg-5">
           <div class="card">
             <div class="card-header pb-0 p-3">
               <h6 class="mb-0">Kas</h6>
@@ -449,7 +449,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     
     </div>

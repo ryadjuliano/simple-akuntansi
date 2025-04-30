@@ -53,7 +53,7 @@
                 <thead class="thead-light">
                   <tr>
                     <th scope="col">Tanggal</th>
-                    <th scope="col">Nama Akun</th>
+                    <th scope="col">Bidang Usaha</th>
                     <th scope="col">Ref</th>
                     <th scope="col">Debet</th>
                     <th scope="col">Kredit</th>

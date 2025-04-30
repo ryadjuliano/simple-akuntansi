@@ -33,7 +33,7 @@
                                 <thead class="bg-light">
                                     <tr>
                                         <th class="text-center text-xs">#</th>
-                                        <th class="text-center text-xs">Nama</th>
+                                        <th class="text-center text-xs">Bidang Usaha</th>
                                         <th class="text-center text-xs">Jenis Kategori</th>
                                         <th class="text-center text-xs">No Reference</th>
                                         <th class="text-center text-xs">Keterangan</th>
@@ -49,7 +49,7 @@
                                     ?>
                                     <tr>
                                         <td class="text-center text-sm"><?= $no++ ?></td>
-                                        <td class="text-center text-sm"><?= $row->keterangan ?></td>
+                                        <td class="text-center text-sm"><?= $row->nama_bidang ?></td>
                                         <td class="text-center text-sm"><?= $row->nama_reff ?></td>
                                         <td class="text-center text-sm"><?= $row->no_reff ?></td>
                                         <td class="text-center text-sm">

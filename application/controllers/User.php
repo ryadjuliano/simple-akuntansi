@@ -221,10 +221,14 @@ class User extends CI_Controller{
                 'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
                 'saldo'=>$this->input->post('saldo',true),
-                'keterangan'=>$this->input->post('keterangan',true)
+                'keterangan'=>$this->input->post('keterangan',true),
+                'akun_bidang'=>$this->input->post('akun_bidang',true)
             ];
         }
+// echo "<pre />";
 
+//         print_r($data);
+        // die();
         if(!$this->jurnal->validate()){
             $this->load->view('template',compact('content','title','action','data','titleTag'));
             return;
