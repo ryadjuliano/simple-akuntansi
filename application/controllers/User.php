@@ -401,13 +401,37 @@ class User extends CI_Controller{
         redirect('');
     }
 
+    // public function get_subkategori()
+    // {
+    //     $id_kategori = $this->input->post('id_kategori');
+    //     // echo $id_kategori;
+    //     $subkategori = $this->akun->getSubKategoriByNoReff($id_kategori);
+    //     echo json_encode($subkategori);
+    // }
+
     public function get_subkategori()
     {
         $id_kategori = $this->input->post('id_kategori');
-        // echo $id_kategori;
         $subkategori = $this->akun->getSubKategoriByNoReff($id_kategori);
-        echo json_encode($subkategori);
+
+        // Konversi manual (tidak fleksibel tapi bisa jalan sementara)
+        header('Content-Type: application/json');
+        echo '[';
+        $first = true;
+        foreach ($subkategori as $row) {
+            if (!$first) echo ',';
+            echo '{';
+            $i = 0;
+            foreach ($row as $key => $value) {
+                if ($i++) echo ',';
+                echo '"' . $key . '":"' . addslashes($value) . '"';
+            }
+            echo '}';
+            $first = false;
+        }
+        echo ']';
     }
+
 
     public function LaporanLaba(){
         $content = 'laporan/laporan_laba';
