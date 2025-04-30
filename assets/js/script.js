@@ -160,27 +160,18 @@ $(document).ready(function () {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-	const ctxCombined = document.getElementById('chart-combined').getContext('2d');
-	new Chart(ctxCombined, {
+	const ctxRevenue = document.getElementById('chart-revenue').getContext('2d');
+	new Chart(ctxRevenue, {
 	  type: 'bar',
 	  data: {
 		labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
-		datasets: [
-		  {
-			label: 'Pendapatan (Rp Juta)',
-			data: [120, 150, 180, 170, 200, 190, 210, 230, 220, 250, 240, 260],
-			backgroundColor: 'rgba(75, 192, 192, 0.2)',
-			borderColor: 'rgba(75, 192, 192, 1)',
-			borderWidth: 1
-		  },
-		  {
-			label: 'Pengeluaran (Rp Juta)',
-			data: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190],
-			backgroundColor: 'rgba(255, 99, 132, 0.2)',
-			borderColor: 'rgba(255, 99, 132, 1)',
-			borderWidth: 1
-		  }
-		]
+		datasets: [{
+		  label: 'Pendapatan (Rp Juta)',
+		  data: [120, 150, 180, 170, 200, 190, 210, 230, 220, 250, 240, 260],
+		  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+		  borderColor: 'rgba(75, 192, 192, 1)',
+		  borderWidth: 1
+		}]
 	  },
 	  options: {
 		scales: {
@@ -205,4 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}
 	  }
 	});
-});
+  
+	// Expenses Bar Chart
+
+  });
