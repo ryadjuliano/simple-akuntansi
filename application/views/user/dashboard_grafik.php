@@ -308,9 +308,17 @@
   
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const labels = <?= json_encode($allLabels) ?>;
-  const dataPendapatan = <?= json_encode($pendapatanData) ?>;
-  const dataPengeluaran = <?= json_encode($pengeluaranData) ?>;
+  const labels = [<?php foreach ($allLabels as $i => $label): ?>
+    "<?= addslashes($label) ?>"<?= $i !== array_key_last($allLabels) ? ',' : '' ?>
+  <?php endforeach; ?>];
+
+  const dataPendapatan = [<?php foreach ($pendapatanData as $i => $val): ?>
+    <?= (float)$val ?><?= $i !== array_key_last($pendapatanData) ? ',' : '' ?>
+  <?php endforeach; ?>];
+
+  const dataPengeluaran = [<?php foreach ($pengeluaranData as $i => $val): ?>
+    <?= (float)$val ?><?= $i !== array_key_last($pengeluaranData) ? ',' : '' ?>
+  <?php endforeach; ?>];
 
   const ctx = document.getElementById('chart-combine').getContext('2d');
   const chartCombine = new Chart(ctx, {
