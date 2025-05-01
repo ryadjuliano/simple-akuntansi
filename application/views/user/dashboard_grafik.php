@@ -124,15 +124,24 @@
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Saldo Kas</p>
-                    <h5 class="font-weight-bolder">
-                      $53,000
-                    </h5>
-                  
-                  </div>
+              <div class="col-8">
+                <div class="numbers">
+                <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Saldo</h6>
                 </div>
+                <?php foreach($totalKreditGroup as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+
                 <div class="col-4 text-end">
                   <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
                     <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
@@ -148,10 +157,20 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Pendapatan</p>
-                    <h5 class="font-weight-bolder">
-                      2,300
-                    </h5>
+                  <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Pendapatan</h6>
+                </div>
+                <?php foreach($totalKredit as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
+
                   
                   </div>
                 </div>
@@ -170,10 +189,19 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Pengeluaran</p>
-                    <h5 class="font-weight-bolder">
-                      +3,462
-                    </h5>
+                  <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Pengeluaran</h6>
+                </div>
+                <?php foreach($totalDebit as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
                    
                   </div>
                 </div>
@@ -192,11 +220,20 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Transaksi</p>
-                    <h5 class="font-weight-bolder">
-                      $103,430
-                    </h5>
                    
+                  <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Total Transaksi</h6>
+                </div>
+                <?php foreach($totalKreditGroup as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
                   </div>
                 </div>
                 <div class="col-4 text-end">
@@ -210,248 +247,105 @@
         </div>
       </div>
       <div class="row mt-4">
-  <div class="col-lg-6">
+  <div class="col-lg-10 mx-auto">
     <div class="card z-index-2 h-100">
       <div class="card-header pb-0 pt-3 bg-transparent">
-        <h6 class="text-capitalize">Pendapatan</h6>
+        <h6 class="text-capitalize">Pendapatan/Pengeluaran</h6>
         <p class="text-sm mb-0">
           <i class="fa fa-arrow-up text-success"></i>
-          <!-- <span class="font-weight-bold">4% more</span> in 2021 -->
         </p>
       </div>
       <div class="card-body p-3">
         <div class="chart">
-          <canvas id="chart-combine" class="chart-canvas" height="200"></canvas>
+          <canvas id="chart-combine" class="chart-canvas" height="100"></canvas>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-lg-6">
+  <!-- <div class="col-lg-6">
     <div class="card z-index-2 h-100">
       <div class="card-header pb-0 pt-3 bg-transparent">
         <h6 class="text-capitalize">Pengeluaran</h6>
         <p class="text-sm mb-0">
           <i class="fa fa-arrow-down text-danger"></i>
-          <!-- <span class="font-weight-bold">2% less</span> in 2021 -->
         </p>
       </div>
       <div class="card-body p-3">
         <div class="chart">
-          <canvas id="chart-expenses" class="chart-canvas"  height="200"></canvas>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
-      <div class="row mt-4">
-        <div class="col-lg-7 mb-lg-0 mb-4">
-          <div class="card ">
-            <div class="card-header pb-0 p-3">
-              <div class="d-flex justify-content-between">
-                <h6 class="mb-2">Pendapatan</h6>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table align-items-center ">
-                <tbody>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                          <img src="../assets/img/icons/flags/US.png" alt="Country flag">
-                        </div>
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Country:</p>
-                          <h6 class="text-sm mb-0">United States</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">2500</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$230,900</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">29.9%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                          <img src="../assets/img/icons/flags/DE.png" alt="Country flag">
-                        </div>
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Country:</p>
-                          <h6 class="text-sm mb-0">Germany</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">3.900</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$440,000</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">40.22%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                          <img src="../assets/img/icons/flags/GB.png" alt="Country flag">
-                        </div>
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Country:</p>
-                          <h6 class="text-sm mb-0">Great Britain</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">1.400</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$190,700</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">23.44%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="w-30">
-                      <div class="d-flex px-2 py-1 align-items-center">
-                        <div>
-                          <img src="../assets/img/icons/flags/BR.png" alt="Country flag">
-                        </div>
-                        <div class="ms-4">
-                          <p class="text-xs font-weight-bold mb-0">Country:</p>
-                          <h6 class="text-sm mb-0">Brasil</h6>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Sales:</p>
-                        <h6 class="text-sm mb-0">562</h6>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="text-center">
-                        <p class="text-xs font-weight-bold mb-0">Value:</p>
-                        <h6 class="text-sm mb-0">$143,960</h6>
-                      </div>
-                    </td>
-                    <td class="align-middle text-sm">
-                      <div class="col text-center">
-                        <p class="text-xs font-weight-bold mb-0">Bounce:</p>
-                        <h6 class="text-sm mb-0">32.14%</h6>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="col-lg-5">
-          <div class="card">
-            <div class="card-header pb-0 p-3">
-              <h6 class="mb-0">Kas</h6>
-            </div>
-            <div class="card-body p-3">
-              <ul class="list-group">
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                      <i class="ni ni-mobile-button text-white opacity-10"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Devices</h6>
-                      <span class="text-xs">250 in stock, <span class="font-weight-bold">346+ sold</span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                      <i class="ni ni-tag text-white opacity-10"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Tickets</h6>
-                      <span class="text-xs">123 closed, <span class="font-weight-bold">15 open</span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                      <i class="ni ni-box-2 text-white opacity-10"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Error logs</h6>
-                      <span class="text-xs">1 is active, <span class="font-weight-bold">40 closed</span></span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-                <li class="list-group-item border-0 d-flex justify-content-between ps-0 border-radius-lg">
-                  <div class="d-flex align-items-center">
-                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
-                      <i class="ni ni-satisfied text-white opacity-10"></i>
-                    </div>
-                    <div class="d-flex flex-column">
-                      <h6 class="mb-1 text-dark text-sm">Happy users</h6>
-                      <span class="text-xs font-weight-bold">+ 430</span>
-                    </div>
-                  </div>
-                  <div class="d-flex">
-                    <button class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
-      </div>
     
     </div>
   </main>
+
+  <?php
+  // Ambil semua label unik dari kedua array
+  $allLabels = [];
+  foreach (array_merge($totalKredit, $totalDebit) as $item) {
+      $allLabels[$item->nama_bidang] = $item->nama_bidang;
+  }
+  $allLabels = array_values($allLabels);
+
+  // Buat data sejajar untuk pendapatan & pengeluaran
+  function getDataByLabel($data, $labels) {
+      $map = [];
+      foreach ($data as $item) {
+          $map[$item->nama_bidang] = (float) $item->total_saldo;
+      }
+      $result = [];
+      foreach ($labels as $label) {
+          $result[] = isset($map[$label]) ? $map[$label] : 0;
+      }
+      return $result;
+  }
+
+  $pendapatanData = getDataByLabel($totalKredit, $allLabels);
+  $pengeluaranData = getDataByLabel($totalDebit, $allLabels);
+  ?>
   
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = <?= json_encode($allLabels) ?>;
+  const dataPendapatan = <?= json_encode($pendapatanData) ?>;
+  const dataPengeluaran = <?= json_encode($pengeluaranData) ?>;
+
+  const ctx = document.getElementById('chart-combine').getContext('2d');
+  const chartCombine = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: 'Pendapatan',
+        data: dataPendapatan,
+          backgroundColor: 'rgba(75, 192, 192, 0.7)',
+          borderColor: 'rgba(75, 192, 192, 1)',
+          borderWidth: 1
+        },
+        {
+          label: 'Pengeluaran',
+          data: dataPengeluaran,
+          backgroundColor: 'rgba(255, 99, 132, 0.7)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function(value) {
+              return 'Rp ' + new Intl.NumberFormat('id-ID').format(value);
+            }
+          }
+        }
+      }
+    }
+  });
+</script>

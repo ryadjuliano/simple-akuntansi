@@ -66,9 +66,11 @@
                   <input type="hidden" class="form-control" id="reff" name="reff" readonly>
 
                   <label for="sub_kategori">Sub Kategori:</label>
-                  <select name="sub_kategori" id="sub_kategori" class="form-control">
+                  <!-- <select name="sub_kategori" id="sub_kategori" class="form-control">
                     <option value="">-- Pilih Sub Kategori --</option>
-                  </select>
+                  </select> -->
+                  <?= form_dropdown('no_reff', getDropdownList('akun_sub', ['id', 'nama_reff_sub']), isset($data->nama_reff_sub) ? $data->nama_reff_sub : '', ['class' => 'form-select', 'id' => 'id']) ?>
+                  <?= form_error('id') ?>
                 </div>
 
                 <div class="col-md-6 mb-3">

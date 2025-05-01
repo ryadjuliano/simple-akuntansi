@@ -26,6 +26,9 @@ class User extends CI_Controller{
             $saldo[] = (array) $this->jurnal->getJurnalByNoReffSaldo($row->no_reff);
         }
 
+
+
+
         // if($data == null || $saldo == null){
         //     $data = 0;
         //     $saldo = 0;
@@ -34,9 +37,15 @@ class User extends CI_Controller{
         $jumlah = count($data);
 
         $jurnals = $this->jurnal->getJurnalJoinAkun();
-        $totalDebit = $this->jurnal->getTotalSaldo('debit');
-        $totalKredit = $this->jurnal->getTotalSaldo('kredit');
-        $this->load->view('template',compact('content','dataAkun','titleTag','jurnals','totalDebit','totalKredit','jumlah','data','saldo','dataAkunTransaksi'));
+        $totalDebit = $this->jurnal->getTotalSaldoGroup('debit');
+        $totalKredit = $this->jurnal->getTotalSaldoGroup('kredit');
+        $totalKreditGroup = $this->jurnal->getTotalSaldoGroup('kredit');
+        
+
+        // echo '<pre>';
+        // print_r($totalKreditGroiup);
+        // die();
+        $this->load->view('template',compact('content','dataAkun','titleTag','jurnals','totalDebit','totalKreditGroup','totalKredit','jumlah','data','saldo','dataAkunTransaksi'));
     }
 
     public function dataAkun(){
@@ -169,10 +178,9 @@ class User extends CI_Controller{
         // $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
         $tahun = $this->jurnal->getJurnalByYear();
         $bulan = date('m');
-        $listJurnal = $this->jurnal->getJurnalJoinAkunDetailMonthly($bulan);
-        // echo '<pre>';
-        // print_r($listJurnal);
-        // die();
+        $listJurnal = $this->jurnal->getJurnalJoinAkunDetailAll();
+
+   
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
     public function jurnalUmumDetail(){

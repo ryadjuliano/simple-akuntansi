@@ -141,6 +141,22 @@ class Jurnal_model extends CI_Model{
                         ->result();
     }
 
+
+    public function getJurnalJoinAkunDetailAll(){
+        return $this->db->select('transaksi.id_transaksi,transaksi.tgl_transaksi,akun.nama_reff,transaksi.no_reff,transaksi.jenis_saldo,transaksi.saldo,transaksi.tgl_input,transaksi.keterangan,akun_sub.nama_reff_sub,akun_sub.keterangan as keteranganDetail, akun_bidang.nama_bidang')
+                        ->from($this->table)
+                        // ->where('month(transaksi.tgl_transaksi)',$bulan)
+                        ->join('akun','transaksi.no_reff = akun.no_reff')
+                        ->join('akun_sub','akun_sub.no_reff = akun.no_reff')
+                        ->join('akun_bidang','akun_bidang.id = transaksi.akun_bidang')
+                        ->order_by('tgl_transaksi','ASC')
+                        ->order_by('tgl_input','ASC')
+                        ->order_by('jenis_saldo','ASC')
+                        ->order_by('keterangan','ASC')
+                        ->get()
+                        ->result();
+    }
+
     public function getTotalSaldoDetail($jenis_saldo,$bulan,$tahun){
         return $this->db->select_sum('saldo')
                         ->from($this->table)
@@ -157,6 +173,17 @@ class Jurnal_model extends CI_Model{
                         ->where('jenis_saldo',$jenis_saldo)
                         ->get()
                         ->row();
+       
+    }
+    public function getTotalSaldoGroup($jenis_saldo){
+        return $this->db->select('SUM(saldo) as total_saldo, akun_bidang.nama_bidang')
+                        ->from('transaksi')
+                        ->join('akun_bidang', 'transaksi.akun_bidang = akun_bidang.id')
+                        ->where('jenis_saldo', $jenis_saldo)
+                        ->group_by('akun_bidang.nama_bidang')
+                        ->order_by('akun_bidang.nama_bidang', 'ASC')
+                        ->get()
+                        ->result();
     }
 
     public function insertJurnal($data){
