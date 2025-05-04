@@ -69,8 +69,8 @@
                   <!-- <select name="sub_kategori" id="sub_kategori" class="form-control">
                     <option value="">-- Pilih Sub Kategori --</option>
                   </select> -->
-                  <?= form_dropdown('no_reff', getDropdownList('akun_sub', ['id', 'nama_reff_sub']), isset($data->nama_reff_sub) ? $data->nama_reff_sub : '', ['class' => 'form-select', 'id' => 'id']) ?>
-                  <?= form_error('id') ?>
+                  <?= form_dropdown('akun_sub', getDropdownList('akun_sub', ['no_reff', 'nama_reff_sub']), isset($data->nama_reff_sub) ? $data->nama_reff_sub : '', ['class' => 'form-select', 'id' => 'akun_sub']) ?>
+                  <?= form_error('no_reff') ?>
                 </div>
 
                 <div class="col-md-6 mb-3">

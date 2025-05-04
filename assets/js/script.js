@@ -47,6 +47,7 @@ $(document).ready(function () {
         "autoWidth": false,
         "ordering": true,
     });
+	
 	$('#tabelKas').DataTable({
         "language": {
             "search": "Cari:",

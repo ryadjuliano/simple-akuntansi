@@ -177,9 +177,11 @@ class User extends CI_Controller{
         $content = 'transaksi/view';
         // $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
         $tahun = $this->jurnal->getJurnalByYear();
-        $bulan = date('m');
+        // $bulan = date('m');
         $listJurnal = $this->jurnal->getJurnalJoinAkunDetailAll();
-
+        // echo '<pre>';
+        // print_r($listJurnal);
+        // die();
    
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
@@ -230,13 +232,13 @@ class User extends CI_Controller{
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
                 'saldo'=>$this->input->post('saldo',true),
                 'keterangan'=>$this->input->post('keterangan',true),
-                'akun_bidang'=>$this->input->post('akun_bidang',true)
+                'akun_bidang'=>$this->input->post('akun_bidang',true),                                                                                                                                              
+                'no_reff_sub'=>$this->input->post('akun_sub',true)
             ];
-        }
-// echo "<pre />";
 
-//         print_r($data);
-        // die();
+
+        }
+
         if(!$this->jurnal->validate()){
             $this->load->view('template',compact('content','title','action','data','titleTag'));
             return;
@@ -246,18 +248,20 @@ class User extends CI_Controller{
         $this->session->set_flashdata('berhasil','Data Jurnal Berhasil Di Tambahkan');
         redirect('jurnal_umum');    
     }
-    public function kas()
+
+    public function createKas()
     {
         $title = 'Tambah'; 
         $content = 'transaksi/kas'; 
-        $action = 'create/kas'; 
+        $action = 'user/kas/create'; 
         $tgl_input = date('Y-m-d H:i:s'); 
         $id_user = $this->session->userdata('id'); 
-        $titleTag = 'Tambah Jur';
+        // $titleTag = 'Tambah Jur';
 
         if(!$_POST)
         {
             $data = (object) $this->jurnal->getDefaultValues();
+          
         }
         else
         {
@@ -269,8 +273,11 @@ class User extends CI_Controller{
                 'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
                 'saldo'=>$this->input->post('saldo',true),
-                'keterangan'=>$this->input->post('keterangan',true)
+                'keterangan'=>$this->input->post('keterangan',true),
+                'status_kas'=> 1,
             ];
+
+
         }
 
         if(!$this->jurnal->validate()){
@@ -280,8 +287,28 @@ class User extends CI_Controller{
         
         $this->jurnal->insertJurnal($data);
         $this->session->set_flashdata('berhasil','Data Jurnal Berhasil Di Tambahkan');
-        redirect('jurnal_umum');    
+        redirect('jurnal_umum');   
     }
+
+    
+    public function kas()
+    {
+
+
+        $title = 'Tambah'; 
+        $content = 'transaksi/kas'; 
+        $action = 'user/kas/create'; 
+        $tgl_input = date('Y-m-d H:i:s'); 
+        $id_user = $this->session->userdata('id'); 
+        $titleTag = 'Tambah Kas';
+        
+        $data = (object) $this->jurnal->getDefaultValues();
+        $listJurnal = $this->jurnal->getJurnalJoinAkunDetailAllKas('kredit',1);
+    
+   
+        $this->load->view('template',compact('content','title','listJurnal','action','data','titleTag'));
+    }
+
 
     public function editForm(){
         if($_POST){

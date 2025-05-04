@@ -76,7 +76,7 @@
     <div class="modal fade" id="modalTambahKas" tabindex="-1" aria-labelledby="modalTambahKasLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="<?= base_url('data_akun/tambah_kas') ?>" method="POST">
+                <form action="<?= base_url('user/createKas') ?>" method="POST">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTambahKasLabel">Tambah Kas Baru</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -84,19 +84,30 @@
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="tanggal" class="form-label">Tanggal</label>
-                            <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+                            <input type="date" class="form-control" id="tanggal" name="tgl_transaksi" required>
                         </div>
                         <div class="mb-3">
                             <label for="nama_penyesuaian" class="form-label">Nama Penyesuaian</label>
                             <input type="text" class="form-control" id="nama_penyesuaian" name="nama_penyesuaian" required>
                         </div>
                         <div class="mb-3">
-                            <label for="jenis" class="form-label">Jenis</label>
-                            <select class="form-select" id="jenis" name="jenis" required>
-                                <option value="">-- Pilih Jenis --</option>
-                                <option value="debit">Debit</option>
-                                <option value="kredit">Kredit</option>
-                            </select>
+                            <label for="no_reff" class="form-label">Bidang Usaha</label>
+                                            <?= form_dropdown('akun_bidang', getDropdownListUsaha('akun_bidang', ['id', 'nama_bidang']), isset($data->nama_bidang) ? $data->nama_bidang : '', ['class' => 'form-select', 'id' => 'akun_bidang']) ?>
+                                            <?= form_error('nama_bidang') ?>
+                            </div>
+                       
+                        <div class="mb-3">
+                        <label for="jenis_saldo" class="form-label">Jenis Saldo</label>
+                  <?= form_dropdown('jenis_saldo', [
+    'debit' => 'Uang Keluar',
+    'kredit' => 'Uang Masuk'
+], $data->jenis_saldo, ['class' => 'form-select', 'id' => 'jenis_saldo']) ?>
+                  <?= form_error('jenis_saldo') ?>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nama_penyesuaian" class="form-label">Saldo</label>
+                            <input type="text" class="form-control" id="saldo" name="saldo" value="<?= $data->saldo ?>" placeholder="Masukkan Saldo">
+                  <?= form_error('saldo') ?>
                         </div>
                         <div class="mb-3">
                             <label for="keterangan" class="form-label">Keterangan</label>
@@ -114,29 +125,4 @@
 
 </main>
 
-<!-- Tambahkan Script DataTables -->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
-<script>
-$(document).ready(function() {
-    $('#tabelKas').DataTable({
-        "language": {
-            "search": "Cari:",
-            "lengthMenu": "Tampilkan _MENU_ data",
-            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
-            "paginate": {
-                "first": "Pertama",
-                "last": "Terakhir",
-                "next": "→",
-                "previous": "←"
-            },
-            "zeroRecords": "Tidak ada data ditemukan",
-        },
-        "pageLength": 10,
-        "lengthChange": false,
-        "autoWidth": false,
-        "ordering": true,
-    });
-});
-</script>

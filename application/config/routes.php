@@ -74,6 +74,7 @@ $route['jurnal_umum/edit'] = 'user/editJurnal';
 $route['jurnal_umum/edit_form'] = 'user/editForm';
 $route['jurnal_umum/hapus'] = 'user/deleteJurnal';
 $route['kas'] = 'user/kas';
+// $route['kas/create'] = 'createKas';
 // json
 
 $route['kategori/getter'] = 'user/get_subkategori';

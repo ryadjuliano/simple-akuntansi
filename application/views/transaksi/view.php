@@ -25,20 +25,20 @@
             <div class="col-12">
                 <div class="card shadow-sm border-0">
                     <div class="card-header bg-white border-bottom py-3">
-                        <h6 class="text-dark mb-0">Data Kategori</h6>
+                        <h6 class="text-dark mb-0">Data Transaksi</h6>
                     </div>
                     <div class="card-body px-4 pt-0 pb-4">
                         <div class="table-responsive">
                             <table id="tabelKategori" class="table table-hover align-middle mb-0">
                                 <thead class="bg-light">
                                     <tr>
-                                        <th class="text-center text-xs">#</th>
-                                        <th class="text-center text-xs">Bidang Usaha</th>
-                                        <th class="text-center text-xs">Jenis Kategori</th>
-                                        <th class="text-center text-xs">No Reference</th>
-                                        <th class="text-center text-xs">Keterangan</th>
-                                        <th class="text-center text-xs">Kategori</th>
-                                        <th class="text-center text-xs">Jumlah Uang</th>
+                                        <th class=" text-xs">#</th>
+                                        <th class=" text-xs">Bidang Usaha</th>
+                                        <th class=" text-xs">Jenis Kategori</th>
+                                        <th class=" text-xs">No Reference</th>
+                                        <th class=" text-xs">Keterangan</th>
+                                        <th class=" text-xs">Kategori</th>
+                                        <th class=" text-xs">Jumlah Uang</th>
                                         <th class="text-center text-xs">Aksi</th>
                                     </tr>
                                 </thead>
@@ -51,12 +51,12 @@
                                         <td class="text-center text-sm"><?= $no++ ?></td>
                                         <td class="text-center text-sm"><?= $row->nama_bidang ?></td>
                                         <td class="text-center text-sm"><?= $row->nama_reff ?></td>
-                                        <td class="text-center text-sm"><?= $row->no_reff ?></td>
+                                        <td class="text-center text-sm">#<?= $row->no_reff ?></td>
                                         <td class="text-center text-sm">
                                           <?= ($row->jenis_saldo === 'kredit') ? 'Pemasukan' : 'Pengeluaran'; ?>
                                         </td>
-                                        <td class="text-center text-sm"><?= $row->keteranganDetail ?></td>
-                                        <td class="text-center text-sm"><?= number_format($row->saldo, 0, ',', '.') ?></td>
+                                        <td class="text-sm"><?= $row->keterangan ?></td>
+                                        <td class="text-sm">Rp <?= number_format($row->saldo, 0, ',', '.') ?></td>
                                         <td class="text-center">
                                             <a href="<?= base_url('data_akun/edit/'.$row->tgl_transaksi) ?>" class="btn btn-sm btn-warning">Edit</a>
                                         </td>
