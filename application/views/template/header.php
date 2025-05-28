@@ -123,11 +123,11 @@
             <span class="sidenav-normal">Laporan Transaksi</span>
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="<?= base_url('laporan/laba') ?>">
             <span class="sidenav-normal">Laporan Kas</span>
           </a>
-        </li>
+        </li> -->
       </ul>
     </div>
   </li>
