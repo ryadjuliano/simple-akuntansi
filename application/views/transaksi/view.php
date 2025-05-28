@@ -57,9 +57,17 @@
                                         </td>
                                         <td class="text-sm"><?= $row->keterangan ?></td>
                                         <td class="text-sm">Rp <?= number_format($row->saldo, 0, ',', '.') ?></td>
-                                        <td class="text-center">
-                                            <a href="<?= base_url('data_akun/edit/'.$row->tgl_transaksi) ?>" class="btn btn-sm btn-warning">Edit</a>
-                                        </td>
+                                        <!-- <td class="text-center">
+                                            <a href="<?= base_url('jurnal_umum/edit/'.$row->id_transaksi) ?>" class="btn btn-sm btn-warning">Edit</a>
+                                        </td> -->
+                                          <td class="d-flex justify-content-center">
+                                            <?= form_open('jurnal_umum/edit_form','',['id'=>$row->id_transaksi]) ?>
+                                            <?= form_button(['type'=>'submit','content'=>'Edit','class'=>'btn btn-warning mr-1']) ?>
+                                            <?= form_close() ?>
+                                            <!-- <?= form_open('jurnal_umum/hapus',['class'=>'form'],['id'=>$row->id_transaksi]) ?>
+                                            <?= form_button(['type'=>'submit','content'=>'Hapus','class'=>'btn btn-danger hapus']) ?>
+                                            <?= form_close() ?> -->
+                                            </td>   
                                     </tr>
                                     <?php endforeach; ?> 
                                 </tbody>

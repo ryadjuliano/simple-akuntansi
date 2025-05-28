@@ -91,6 +91,10 @@ $route['neraca_saldo/detail'] = 'user/neracaSaldoDetail';
 $route['laporan'] = 'user/laporan';
 $route['laporan/cetak'] = 'user/laporanCetak';
 $route['laporan/laba'] = 'user/LaporanLaba';
+$route['laporan/penjualan'] = 'laporan/penjualan';
+
+
+
 
 
 $route['404_override'] = '';

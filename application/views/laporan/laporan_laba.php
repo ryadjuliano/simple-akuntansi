@@ -29,91 +29,131 @@
                     </div>
                     <div class="card-body px-4 pt-4 pb-4">
                         <!-- Form Filter -->
-                        <form method="post" action="">
-                            <div class="row mb-4">
-                                <div class="col-md-3">
-                                    <label class="form-label text-xs font-weight-bold">Periode</label>
-                                    <input type="text" class="form-control" name="periode" placeholder="01-01-2025 s.d. 27-04-2025" value="01-01-2025 s.d. 27-04-2025">
-                                </div>
-                                <!-- <div class="col-md-3">
-                                    <label class="form-label text-xs font-weight-bold">Pengeluaran</label>
-                                    <select class="form-control" name="pengeluaran">
-                                        <option value="resume">Resume</option>
-                                    </select>
-                                </div> -->
-                                <!-- <div class="col-md-3">
-                                    <label class="form-label text-xs font-weight-bold">Tgl. Tandatangan</label>
-                                    <input type="text" class="form-control" name="tgl_tandatangan" placeholder="27-04-2025" value="27-04-2025">
-                                </div> -->
-                                <!-- <div class="col-md-3">
-                                    <label class="form-label text-xs font-weight-bold">Pejabat</label>
-                                    <select class="form-control" name="pejabat">
-                                        <option value="Agus Prawoto Hadi">Agus Prawoto Hadi (Pembina)</option>
-                                    </select>
-                                </div> -->
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+                        <!-- Form Filter -->
+<form method="post" action="<?= base_url('laporan/penjualan') ?>">
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <label class="form-label text-xs font-weight-bold">Bulan</label>
+            <select class="form-control" name="periode_bulan" required>
+                <option value="">-- Pilih Bulan --</option>
+                <?php
+                    for ($i = 1; $i <= 12; $i++) {
+                        $bulanNama = date('F', mktime(0, 0, 0, $i, 10));
+                        $selected = ($i == set_value('periode_bulan')) ? 'selected' : '';
+                        echo "<option value='{$i}' {$selected}>" . ucfirst($bulanNama) . "</option>";
+                    }
+                ?>
+            </select>
+        </div>
 
-                        <!-- Export Buttons -->
-                        <div class="row mt-4">
-                            <div class="col-md-12">
-                                <button class="btn btn-sm btn-outline-secondary"><i class="fa fa-print"></i> Print</button>
-                                <!-- <button class="btn btn-sm btn-outline-secondary"><i class="fa fa-file-excel"></i> Excel</button> -->
-                                <!-- <button class="btn btn-sm btn-outline-secondary"><i class="fa fa-file-pdf"></i> PDF</button> -->
-                            </div>
-                        </div>
+        <div class="col-md-6 mb-3">
+            <label for="akun_bidang" class="form-label">Bidang Usaha</label>
+            <?= form_dropdown(
+                'akun_bidang',
+                getDropdownListUsaha('akun_bidang', ['id', 'nama_bidang']),
+                set_value('akun_bidang'),
+                ['class' => 'form-select', 'id' => 'akun_bidang']
+            ); ?>
+            <?= form_error('akun_bidang') ?>
+        </div>
 
-                        <!-- Laporan Laba Rugi -->
-                        <div class="row mt-4">
-                            <div class="col-12 text-center">
-                                <h5 class="text-uppercase">Laporan Laba Rugi</h5>
-                                <h6 class="text-uppercase">GJI Dashboard</h6>
-                                <!-- <p>Periode 01 Januari 2025 s.d. 27 April 2025</p> -->
-                            </div>
-                        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary btn-sm me-2">Submit</button>
+            <button type="button" class="btn btn-outline-secondary btn-sm" onclick="printLaporan()">
+                <i class="fa fa-print"></i> Print
+            </button>
+        </div>
+    </div>
+</form>
 
-                        <!-- Pendapatan -->
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <h6 class="text-uppercase">Pendapatan</h6>
-                                <p>Total Pendapatan: Rp <?= number_format(250000000, 0, ',', '.') ?></p>
-                            </div>
-                        </div>
+<?php if (!empty($laporan)) : ?>
+<div  id="laporan-tabel" class="table-responsive mt-4">
+  <table class="table table-bordered table-striped table-hover">
+  <thead class="table-primary text-center align-middle">
+    <tr>
+      <th>No</th>
+      <th>Tanggal</th>
+      <th>Uraian</th>
+      <th>Debit</th>
+      <th>Kredit</th>
+      <th>Setor Bank</th>
+      <th>PIC</th>
+      <th>Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    $no = 1;
+    $total_debit = 0;
+    $total_kredit = 0;
+    $total_setor = 0;
 
-                        <!-- Pengeluaran -->
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <h6 class="text-uppercase">Pengeluaran</h6>
-                                <p>Total Pengeluaran: Rp <?= number_format(150000000, 0, ',', '.') ?></p>
-                            </div>
-                        </div>
+    foreach ($laporan as $row):
+      $debit = ($row->jenis_saldo === 'debit') ? $row->saldo : 0;
+      $kredit = ($row->jenis_saldo === 'kredit') ? $row->saldo : 0;
+      $setor = ($row->keterangan === 'Setor') ? $row->saldo : 0;
 
-                        <!-- Laba -->
-                        <div class="row mt-4">
-                            <div class="col-12">
-                                <h6 class="text-uppercase">Laba</h6>
-                                <p>Laba: Rp <?= number_format(250000000 - 150000000, 0, ',', '.') ?></p>
-                            </div>
-                        </div>
+      $total_debit += $debit;
+      $total_kredit += $kredit;
+      $total_setor += $setor;
+    ?>
+      <tr>
+        <td><?= $no++ ?></td>
+        <td><?= date('d/m/Y', strtotime($row->tgl_transaksi)) ?></td>
+        <td><?= $row->keterangan ?></td>
+        <td class="text-end"><?= $debit ? number_format($debit, 0, ',', '.') : '' ?></td>
+        <td class="text-end"><?= $kredit ? number_format($kredit, 0, ',', '.') : '' ?></td>
+        <td class="text-end"><?= $setor ? number_format($setor, 0, ',', '.') : '' ?></td>
+        <td><?= $row->nama_reff ?></td>
+        <td><?= $row->keteranganDetail ?></td>
+      </tr>
+    <?php endforeach; ?>
 
-                        <!-- Tanda Tangan -->
-                        <!-- <div class="row mt-5">
-                            <div class="col-md-6 text-center">
-                                <p>Yogyakarta, 27 April 2025</p>
-                                <p>Pembina</p>
-                                <br><br><br>
-                                <p>Agus Prawoto Hadi</p>
-                                <p>NIP Admin</p>
-                            </div>
-                        </div> -->
+    <tr class="fw-bold bg-light">
+      <td colspan="3" class="text-end">Total</td>
+      <td class="text-end"><?= number_format($total_debit, 0, ',', '.') ?></td>
+      <td class="text-end"><?= number_format($total_kredit, 0, ',', '.') ?></td>
+      <td class="text-end"><?= number_format($total_setor, 0, ',', '.') ?></td>
+      <td colspan="2"></td>
+    </tr>
+    <tr class="fw-bold bg-success text-white">
+      <td colspan="3" class="text-end">Saldo</td>
+      <td colspan="5">Rp <?= number_format(($total_kredit - $total_debit), 0, ',', '.') ?></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<?php endif; ?>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script>
+  function printLaporan() {
+    const content = document.getElementById("laporan-tabel").innerHTML;
+    const printWindow = window.open('', '', 'width=800,height=600');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>Print Laporan</title>
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+          <style>
+            body { padding: 20px; font-size: 12px; }
+            table { font-size: 12px; }
+            th, td { padding: 5px; }
+          </style>
+        </head>
+        <body onload="window.print(); window.close();">
+          <h5 class="text-center mb-4">Laporan Keuangan</h5>
+          ${content}
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  }
+</script>

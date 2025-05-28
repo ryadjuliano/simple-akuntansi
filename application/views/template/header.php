@@ -120,7 +120,7 @@
       <ul class="nav ms-4">
         <li class="nav-item">
           <a class="nav-link" href="<?= base_url('laporan/laba') ?>">
-            <span class="sidenav-normal">Laporan Laba/Rugi</span>
+            <span class="sidenav-normal">Laporan Transaksi</span>
           </a>
         </li>
         <li class="nav-item">
