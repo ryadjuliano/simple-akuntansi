@@ -1,6 +1,27 @@
 $(document).ready(function () {
-
-
+	
+    $('#no_reff').on('change', function() {
+		
+      var id_kategori = $(this).val();
+	  console.log(id_kategori);
+      if(id_kategori) {
+        $.ajax({
+          url: BASE_URL + "kategori/getter",
+          type: "POST",
+          data: { id_kategori: id_kategori },
+          dataType: "json",
+          success: function(data) {
+			console.log(data);
+            $('#sub_kategori').empty().append('<option value="">-- Pilih Sub Kategori --</option>');
+            $.each(data, function(key, value) {
+              $('#sub_kategori').append('<option value="'+ value.id_sub +'">'+ value.nama_reff_sub +'</option>');
+            });
+          }
+        });
+      } else {
+        $('#sub_kategori').empty().append('<option value="">-- Pilih Sub Kategori --</option>');
+      }
+    });
 
 	$('#datepicker').datepicker({
 		format: "yyyy-mm-dd",
@@ -8,6 +29,43 @@ $(document).ready(function () {
 		todayHighlight: true,
 	});
 
+	$('#tabelKategori').DataTable({
+        "language": {
+            "search": "Cari:",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            "paginate": {
+                "first": "Pertama",
+                "last": "Terakhir",
+                "next": "→",
+                "previous": "←"
+            },
+            "zeroRecords": "Tidak ada data ditemukan",
+        },
+        "pageLength": 10,
+        "lengthChange": false,
+        "autoWidth": false,
+        "ordering": true,
+    });
+	
+	$('#tabelKas').DataTable({
+        "language": {
+            "search": "Cari:",
+            "lengthMenu": "Tampilkan _MENU_ data",
+            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ data",
+            "paginate": {
+                "first": "Pertama",
+                "last": "Terakhir",
+                "next": "→",
+                "previous": "←"
+            },
+            "zeroRecords": "Tidak ada data ditemukan",
+        },
+        "pageLength": 10,
+        "lengthChange": false,
+        "autoWidth": false,
+        "ordering": true,
+    });
 	function validasiSaldo(e) {
 		let saldo = $('.saldo').val();
 		let namaAkun = $('#no_reff').val();

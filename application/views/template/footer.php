@@ -1,67 +1,37 @@
-<!-- Footer -->
-<footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-          <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-muted">
-              &copy; <?php echo date('Y');?> <a class="font-weight-bold ml-1" target="_blank">Iamindonesia</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </div>
-  <!-- Argon Scripts -->
-  <!-- Core -->
-  <script src="<?= base_url('assets/vendor/jquery/dist/jquery.min.js') ?>"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-  <script src="<?= base_url('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') ?>"></script>
-  <!-- Optional JS -->
-  <script src="<?= base_url('assets/vendor/chart.js/dist/Chart.min.js') ?>"></script>
-  <script src="<?= base_url('assets/vendor/chart.js/dist/Chart.extension.js') ?>"></script>
-  <!-- Argon JS -->
-  <script src="<?= base_url('assets/js/argon.js?v=1.0.0') ?>"></script>
-  <!-- Datepicker -->
-  <script src="<?= base_url('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') ?>"></script>
-  <!-- SWEETALERT -->
-  <script src="<?= base_url('assets/vendor/sweetalert/sweetalert2.all.min.js') ?>"></script>
-  <!-- Custom JS -->
+
+  <!--   Core JS Files   -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="<?= base_url('assets/js/core/popper.min.js')?>"></script>
+  <script src="<?= base_url('assets/js/plugins/perfect-scrollbar.min.js') ?>"></script>
+  <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
+  
   <script src="<?= base_url('assets/js/script.js') ?>"></script>
-  <?php
-    $pesan = $this->session->flashdata('berhasil');
-    if(!empty($pesan)):
-  ?>
-    <!-- SCRIPT SWEETALERT INLINE -->
-    <script>
-      $(window).on('load',function(){
-        let pesan = "<?= $pesan ?>";
-        swal('Berhasil!',pesan,'success');
-      });
-    </script>
-  <?php endif; ?>
+  <script src="<?= base_url('assets/js/plugins/smooth-scrollbar.min.js') ?>"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<!-- Bootstrap Datepicker CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css">
+<!-- Bootstrap Datepicker JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script>
+  <script>
+    const BASE_URL = "<?= base_url() ?>";
+  </script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?= base_url('assets/js/argon-dashboard.min.js?v=2.1.0') ?>"></script>
 
-  <?php
-    $pesan = $this->session->flashdata('berhasilHapus');
-    if(!empty($pesan)):
-  ?>
-    <script>
-      $(window).on('load',function(){
-        let pesan = "<?= $pesan ?>";
-        swal('Berhasil!',pesan,'success');
-      });
-    </script>
-  <?php endif; ?>  
-
-  <?php
-    $pesan = $this->session->flashdata('dataNull');
-    if(!empty($pesan)):
-  ?>
-    <script>
-      $(window).on('load',function(){
-        let pesan = "<?= $pesan ?>";
-        swal('Oops!',pesan,'error');
-      });
-    </script>
-  <?php endif; ?>
 </body>
 
 </html>

@@ -1,407 +1,342 @@
-  <!-- Main content -->
-  <div class="main-content">
-    <!-- Top navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
-      <div class="container-fluid">
-        <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="">Dashboard</a>
-        <!-- User -->
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  <img alt="Image placeholder" src="<?= base_url('assets/img/theme/team-4-800x800.jpg') ?>">
-                </span>
-                <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold"><?= ucwords($this->session->userdata('username')) ?></span>
-                </div>
-              </div>
-            </a>
-            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-              <a href="<?= base_url('logout') ?>" class="dropdown-item">
-                <i class="ni ni-user-run"></i>
-                <span>Logout</span>
+
+
+<main class="main-content position-relative border-radius-lg ">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page">Dashboard</li>
+          </ol>
+          <!-- <h6 class="font-weight-bolder text-white mb-0"></h6> -->
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <!-- <div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Type here...">
+            </div> -->
+          </div>
+          <ul class="navbar-nav  justify-content-end">
+            <!-- <li class="nav-item d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Sign In</span>
               </a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!-- Header -->
-    <div class="header bg-primary pb-8 pt-5 pt-md-8">
-      <div class="container-fluid">
-        <div class="header-body">    
-          
+            </li> -->
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                  <i class="sidenav-toggler-line bg-white"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item px-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0">
+                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-bell cursor-pointer"></i>
+              </a>
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New message</span> from Laur
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          13 minutes ago
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">New album</span> by Travis Scott
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          1 day
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="avatar avatar-sm bg-gradient-secondary  me-3  my-auto">
+                        <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                          <title>credit-card</title>
+                          <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g transform="translate(-2169.000000, -745.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                              <g transform="translate(1716.000000, 291.000000)">
+                                <g transform="translate(453.000000, 454.000000)">
+                                  <path class="color-background" d="M43,10.7482083 L43,3.58333333 C43,1.60354167 41.3964583,0 39.4166667,0 L3.58333333,0 C1.60354167,0 0,1.60354167 0,3.58333333 L0,10.7482083 L43,10.7482083 Z" opacity="0.593633743"></path>
+                                  <path class="color-background" d="M0,16.125 L0,32.25 C0,34.2297917 1.60354167,35.8333333 3.58333333,35.8333333 L39.4166667,35.8333333 C41.3964583,35.8333333 43,34.2297917 43,32.25 L43,16.125 L0,16.125 Z M19.7083333,26.875 L7.16666667,26.875 L7.16666667,23.2916667 L19.7083333,23.2916667 L19.7083333,26.875 Z M35.8333333,26.875 L28.6666667,26.875 L28.6666667,23.2916667 L35.8333333,23.2916667 L35.8333333,26.875 Z"></path>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          Payment successfully completed
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="fa fa-clock me-1"></i>
+                          2 days
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
-    <!-- Page content -->
-    <div class="container-fluid mt--8">
-      <div class="row mt-5">
-        <div class="col mb-5">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0 text-right">Jurnal Umum</h3>
+    </nav>
+    <!-- End Navbar -->
+
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+              <div class="col-8">
+                <div class="numbers">
+                <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Saldo</h6>
+                </div>
+                <?php foreach($totalKreditGroup as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <div class="p-4">
-                    <h4 class="text-center">Grafik Debit dan Kredit per Akun (Dummy Data)</h4>
-                    <canvas id="jurnalChart" style="max-height: 400px;"></canvas>
-                </div>
             </div>
           </div>
         </div>
-        <div class="col mb-5 mb-xl-0">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0 text-right">Jurnal Umum</h3>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                  <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Pendapatan</h6>
                 </div>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <!-- Projects table -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Nama Akun</th>
-                    <th scope="col">Ref</th>
-                    <th scope="col">Debet</th>
-                    <th scope="col">Kredit</th>
-                    <th scope="col">Keterangan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    foreach($jurnals as $row):
-                    if($row->jenis_saldo=='debit'):
-                  ?>
-                  <tr>
-                    <td>
-                      <?= date_indo($row->tgl_transaksi) ?>
-                    </td>
-                    <td>
-                      <?= $row->nama_reff ?>
-                    </td>
-                    <td>
-                      <?= $row->no_reff ?>
-                    </td>
-                    <td>
-                      <?= 'Rp. '.number_format($row->saldo,0,',','.') ?>
-                    </td>
-                    <td>
-                      Rp. 0
-                    </td>
-                    <td>
-                      <?= $row->keterangan ?>
-                    </td>
-                  </tr>
-                  <?php 
-                    endif;
-                    if($row->jenis_saldo=='kredit'):
-                  ?>
-                  <tr>
-                    <td>
-                      <?= date_indo($row->tgl_transaksi) ?>
-                    </td>
-                    <td class="text-right"><?= $row->nama_reff ?></td>
-                    <td><?= $row->no_reff ?></td>
-                    <td>
-                      Rp. 0
-                    </td>
-                    <td>
-                    <?= 'Rp. '.number_format($row->saldo,0,',','.') ?>
-                    </td> 
-                    <td>
-                      <?= $row->keterangan ?>
-                    </td>          
-                  </tr>  
-                  <?php endif;?>
-                  <?php endforeach ?>
-                  <?php if($totalDebit->saldo != $totalKredit->saldo){ ?>
-                  <tr>
-                    <td colspan="3" class="text-center"><b>Jumlah Total</b></td>
-                    <td class="text-danger"><b><?= 'Rp. '.number_format($totalDebit->saldo,0,',','.') ?></b></td>
-                    <td colspan="2" class="text-danger"><b><?= 'Rp. '.number_format($totalKredit->saldo,0,',','.') ?></b></td>
-                  </tr>
-                  <tr  class="text-center bg-danger ">
-                    <td colspan="6" class="text-white" style="font-weight:bolder;font-size:19px">TIDAK SEIMBANG</td>
-                  </tr>
-                  <?php }else{  ?>
-                    <tr>
-                    <td colspan="3" class="text-center"><b>Jumlah Total</b></td>
-                    <td class="text-success"><b><?= 'Rp. '.number_format($totalDebit->saldo,0,',','.') ?></b></td>
-                    <td colspan="2" class="text-success"><b><?= 'Rp. '.number_format($totalKredit->saldo,0,',','.') ?></b></td>
-                  </tr>
-                  <tr class="text-center bg-success">
-                    <td colspan="6" class="text-white" style="font-weight:bolder;font-size:19px">SEIMBANG</td>
-                  </tr>
-                  <?php } ?>
-                </tbody>
-              </table>
-            </div>
-        </div>
-        <div class="col mt-5 p-0">
-          <div class="card shadow">
-            <div class="card-header border-0">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h3 class="mb-0 text-right">Buku Besar</h3>
+                <?php foreach($totalKredit as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
                 </div>
-              </div>
-            </div>
-            <div class="nav-wrapper mx-3">
-                <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
-                    <?php 
-                      $i = 0;
-                      foreach($dataAkunTransaksi as $row):
-                      $i++;
-                    ?>
-                    <li class="nav-item mb-4">
-                        <a class="nav-link mb-sm-3 mb-md-0 tab-nav" id="tabs-icons-text-<?=$i?>-tab" data-toggle="tab" href="#tabs-icons-text-<?=$i?>" role="tab" aria-controls="tabs-icons-text-<?=$i?>" aria-selected="true"><?= $row->nama_reff ?></a>
-                    </li>
-                    <?php endforeach ?>
-                </ul>
-            </div>
-            <div class="card" style="border-top: 2px solid white">
-                <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <?php 
-                          $a=0;
-                          $debit = 0;
-                          $kredit = 0;
-                          
-                          for($i=0;$i<$jumlah;$i++) :                          
-                          $a++;
-                          $s=0;
-                          $deb = $saldo[$i];
-                        ?>
-                        <div class="tab-pane fade" id="tabs-icons-text-<?= $a ?>" role="tabpanel" aria-labelledby="tabs-icons-text-<?= $a ?>-tab">
-                            <div class="row">
-                              <div class="col">
-                                <b><?= $data[$i][$s]->nama_reff ?></b>
-                              </div>
-                              <div class="col text-right">
-                                <b>No. <?= $data[$i][$s]->no_reff ?></b>
-                              </div>
-                            </div>
-                            <p class="description">
-                            <div class="table-responsive">
-                              <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th rowspan="2">Tanggal</th>
-                                    <th rowspan="2">Keterangan </th>
-                                    <th rowspan="2">Debit</th>
-                                    <th rowspan="2">Kredit</th>
-                                    <th colspan="2" class="text-center">Saldo</th>
-                                  </tr>
-                                  <tr>
-                                    <th class="text-center">Debit</th>
-                                    <th class="text-center">Kredit</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <?php
-                                    for($j=0;$j<count($data[$i]);$j++):
-                                      $timeStampt = strtotime($data[$i][$j]->tgl_transaksi);
-                                      $bulan = date('m',$timeStampt);
+              <?php endforeach; ?>
 
-                                      $tahun = date('Y',$timeStampt);
-                                      $tgl = date('d',$timeStampt);
-                                      $bulan = medium_bulan($bulan);
-                                  ?>
-                                  <tr>
-                                      <td><?= $tgl.' '.$bulan.' '.$tahun ?></td>
-                                      <td><?= $data[$i][$j]->keterangan ?></td>
-                                      <?php 
-                                        if($data[$i][$j]->jenis_saldo=='debit'){
-                                      ?>
-                                        <td>
-                                          <?= 'Rp. '.number_format($data[$i][$j]->saldo,0,',','.') ?>
-                                        </td>
-                                        <td>Rp. 0</td>
-                                      <?php 
-                                        }else{
-                                      ?>
-                                        <td>Rp. 0</td>
-                                        <td>
-                                          <?= 'Rp. '.number_format($data[$i][$j]->saldo,0,',','.') ?>
-                                        </td>
-                                      <?php } ?>
-                                      <?php
-                                        if($deb[$j]->jenis_saldo=="debit"){
-                                          $debit = $debit + $deb[$j]->saldo;
-                                        }else{
-                                          $kredit = $kredit + $deb[$j]->saldo;
-                                        }
-  
-                                        $hasil = $debit-$kredit;
-                                      ?>
-                                      <?php if($hasil>=0){ ?>
-                                        <td><?= 'Rp. '.number_format($hasil,0,',','.') ?></td>
-                                        <td> - </td>
-                                      <?php }else{ ?>
-                                        <td> - </td>
-                                        <td><?= 'Rp. '.number_format(abs($hasil),0,',','.') ?></td>
-                                      <?php } ?>
-                                  </tr>
-                                  <?php endfor ?>
-                                  <?php
-                                    $debit = 0;
-                                    $kredit = 0;
-                                  ?>
-                                  <td class="text-center" colspan="4"><b>Total</b></td>
-                                  <?php if($hasil>=0){ ?>
-                                    <td class="text-success"><?= 'Rp. '.number_format($hasil,0,',','.') ?></td>
-                                    <td> - </td>
-                                  <?php }else{ ?>
-                                    <td> - </td>
-                                    <td class="text-danger"><?= 'Rp. '.number_format(abs($hasil),0,',','.') ?></td>
-                                  <?php } ?>
-                                </tbody>
-                              </table>
-                            </div>
-                        </div>
-                        <?php endfor ?>
-                      </div>
-                    </div>
+                  
                   </div>
                 </div>
-                <div class="col mt-5 p-0">
-                  <div class="card shadow">
-                    <div class="card-header border-0">
-                      <div class="row align-items-center">
-                        <div class="col">
-                          <h3 class="mb-0 text-right">Neraca Saldo</h3>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="table-responsive">
-            <?php 
-                $a=0;
-                $debit = 0;
-                $kredit = 0;
-            ?>
-              <!-- Projects table Neraca Saldo -->
-              <table class="table align-items-center table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col" class="text-center">No. Akun</th>
-                    <th scope="col" class="text-center">Nama Akun</th>
-                    <th scope="col" class="text-center">Debit</th>
-                    <th scope="col" class="text-center">Kredit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $totalDebit=0;
-                        $totalKredit=0;
-                        for($i=0;$i<$jumlah;$i++) :                          
-                            $a++;
-                            $s=0;
-                            $deb = $saldo[$i];
-                    ?>
-                    <tr>
-                        <td class="text-center">
-                            <?= $data[$i][$s]->no_reff ?>
-                        </td>
-                        <td >
-                            <?= $data[$i][$s]->nama_reff ?>
-                        </td>
-                        <?php 
-                            for($j=0;$j<count($data[$i]);$j++):
-                                if($deb[$j]->jenis_saldo=="debit"){
-                                    $debit = $debit + $deb[$j]->saldo;
-                                }else{
-                                    $kredit = $kredit + $deb[$j]->saldo;
-                                }
-                                $hasil = $debit-$kredit;
-                            endfor 
-                        ?>
-                        <?php 
-                            if($hasil>=0){ ?>
-                                <td><?= 'Rp. '.number_format($hasil,0,',','.') ?></td>
-                                <td> - </td>
-                            <?php $totalDebit += $hasil; ?>
-                        <?php }else{ ?>
-                                <td> - </td>
-                                <td><?= 'Rp. '.number_format(abs($hasil),0,',','.') ?></td>
-                                <?php $totalKredit += $hasil; ?>
-                        <?php } ?>
-                        <?php
-                            $debit = 0;
-                            $kredit = 0;
-                        ?>
-                    </tr>
-                    <?php endfor ?>
-                    <?php if($totalDebit != abs($totalKredit)){ ?>
-                    <tr>
-                        <td class="text-center" colspan="2"><b>Total</b></td>
-                        <td class="text-danger"><?= 'Rp. '.number_format($totalDebit,0,',','.') ?></td>
-                        <td class="text-danger"><?= 'Rp. '.number_format(abs($totalKredit),0,',','.') ?></td>
-                    </tr>
-                    <tr class="bg-danger text-center">
-                        <td colspan="6" class="text-white" style="font-weight:bolder;font-size:19px">TIDAK SEIMBANG</td>
-                    </tr>
-                    <?php }else{ ?>
-                      <tr>
-                        <td class="text-center" colspan="2"><b>Total</b></td>
-                        <td class="text-success"><?= 'Rp. '.number_format($totalDebit,0,',','.') ?></td>
-                        <td class="text-success"><?= 'Rp. '.number_format(abs($totalKredit),0,',','.') ?></td>
-                    </tr>
-                    <tr class="bg-success text-center">
-                        <td colspan="6" class="text-white" style="font-weight:bolder;font-size:19px">SEIMBANG</td>
-                    </tr>
-                    <?php } ?>  
-                </tbody>
-              </table>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                  <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Pengeluaran</h6>
+                </div>
+                <?php foreach($totalDebit as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
+                   
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-sm-6">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                   
+                  <div class="mb-3">
+                  <h6 class="text-uppercase text-muted font-weight-bold">Total Transaksi</h6>
+                </div>
+                <?php foreach($totalKreditGroup as $row): ?>
+                <div class="d-flex justify-content-between border-bottom py-2">
+                  <span class="text text-truncate" style="width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                    <?= htmlspecialchars($row->nama_bidang, ENT_QUOTES, 'UTF-8') ?>
+                  </span>
+                  <span class="font-weight-bold text-success text-right">
+                    <?= number_format($row->total_saldo, 0, ',', '.') ?>
+                  </span>
+                </div>
+              <?php endforeach; ?>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                    <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+  <div class="col-lg-10 mx-auto">
+    <div class="card z-index-2 h-100">
+      <div class="card-header pb-0 pt-3 bg-transparent">
+        <h6 class="text-capitalize">Pendapatan/Pengeluaran</h6>
+        <p class="text-sm mb-0">
+          <i class="fa fa-arrow-up text-success"></i>
+        </p>
+      </div>
+      <div class="card-body p-3">
+        <div class="chart">
+          <canvas id="chart-combine" class="chart-canvas" height="100"></canvas>
+        </div>
+      </div>
     </div>
+  </div>
+  <!-- <div class="col-lg-6">
+    <div class="card z-index-2 h-100">
+      <div class="card-header pb-0 pt-3 bg-transparent">
+        <h6 class="text-capitalize">Pengeluaran</h6>
+        <p class="text-sm mb-0">
+          <i class="fa fa-arrow-down text-danger"></i>
+        </p>
+      </div>
+      <div class="card-body p-3">
+        <div class="chart">
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>
+    
+    </div>
+  </main>
 
+  <?php
+  // Ambil semua label unik dari kedua array
+  $allLabels = [];
+  foreach (array_merge($totalKredit, $totalDebit) as $item) {
+      $allLabels[$item->nama_bidang] = $item->nama_bidang;
+  }
+  $allLabels = array_values($allLabels);
+
+  // Buat data sejajar untuk pendapatan & pengeluaran
+  function getDataByLabel($data, $labels) {
+      $map = [];
+      foreach ($data as $item) {
+          $map[$item->nama_bidang] = (float) $item->total_saldo;
+      }
+      $result = [];
+      foreach ($labels as $label) {
+          $result[] = isset($map[$label]) ? $map[$label] : 0;
+      }
+      return $result;
+  }
+
+  $pendapatanData = getDataByLabel($totalKredit, $allLabels);
+  $pengeluaranData = getDataByLabel($totalDebit, $allLabels);
+  ?>
+  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <script>
-  // Dummy data untuk grafik
-  const jurnalData = [
-    { nama_reff: 'Kas', debit: 5000000, kredit: 1000000 },
-    { nama_reff: 'Piutang Usaha', debit: 3000000, kredit: 500000 },
-    { nama_reff: 'Utang Usaha', debit: 0, kredit: 4000000 },
-    { nama_reff: 'Pendapatan', debit: 200000, kredit: 6000000 },
-    { nama_reff: 'Beban Operasional', debit: 2500000, kredit: 0 }
-  ];
+  const labels = [<?php foreach ($allLabels as $i => $label): ?>
+    "<?= addslashes($label) ?>"<?= $i !== array_key_last($allLabels) ? ',' : '' ?>
+  <?php endforeach; ?>];
 
-  // Siapkan data untuk Chart.js
-  const labels = jurnalData.map(item => item.nama_reff);
-  const debitData = jurnalData.map(item => item.debit);
-  const kreditData = jurnalData.map(item => item.kredit);
+  const dataPendapatan = [<?php foreach ($pendapatanData as $i => $val): ?>
+    <?= (float)$val ?><?= $i !== array_key_last($pendapatanData) ? ',' : '' ?>
+  <?php endforeach; ?>];
 
-  // Buat barchart
-  const ctx = document.getElementById('jurnalChart').getContext('2d');
-  new Chart(ctx, {
+  const dataPengeluaran = [<?php foreach ($pengeluaranData as $i => $val): ?>
+    <?= (float)$val ?><?= $i !== array_key_last($pengeluaranData) ? ',' : '' ?>
+  <?php endforeach; ?>];
+
+  const ctx = document.getElementById('chart-combine').getContext('2d');
+  const chartCombine = new Chart(ctx, {
     type: 'bar',
     data: {
       labels: labels,
       datasets: [
         {
-          label: 'Debit',
-          data: debitData,
-          backgroundColor: 'rgba(54, 162, 235, 0.6)',
-          borderColor: 'rgba(54, 162, 235, 1)',
+          label: 'Pendapatan',
+        data: dataPendapatan,
+          backgroundColor: 'rgba(75, 192, 192, 0.7)',
+          borderColor: 'rgba(75, 192, 192, 1)',
           borderWidth: 1
         },
         {
-          label: 'Kredit',
-          data: kreditData,
-          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+          label: 'Pengeluaran',
+          data: dataPengeluaran,
+          backgroundColor: 'rgba(255, 99, 132, 0.7)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1
         }
@@ -409,40 +344,12 @@
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
       scales: {
         y: {
           beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Nominal (Rp)'
-          },
           ticks: {
             callback: function(value) {
-              return 'Rp ' + value.toLocaleString('id-ID');
-            }
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Nama Akun'
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          position: 'top'
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              let label = context.dataset.label || '';
-              if (label) {
-                label += ': ';
-              }
-              label += 'Rp ' + context.parsed.y.toLocaleString('id-ID');
-              return label;
+              return 'Rp ' + new Intl.NumberFormat('id-ID').format(value);
             }
           }
         }

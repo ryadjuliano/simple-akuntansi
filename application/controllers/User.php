@@ -26,6 +26,9 @@ class User extends CI_Controller{
             $saldo[] = (array) $this->jurnal->getJurnalByNoReffSaldo($row->no_reff);
         }
 
+
+
+
         // if($data == null || $saldo == null){
         //     $data = 0;
         //     $saldo = 0;
@@ -34,16 +37,30 @@ class User extends CI_Controller{
         $jumlah = count($data);
 
         $jurnals = $this->jurnal->getJurnalJoinAkun();
-        $totalDebit = $this->jurnal->getTotalSaldo('debit');
-        $totalKredit = $this->jurnal->getTotalSaldo('kredit');
-        $this->load->view('template',compact('content','dataAkun','titleTag','jurnals','totalDebit','totalKredit','jumlah','data','saldo','dataAkunTransaksi'));
+        $totalDebit = $this->jurnal->getTotalSaldoGroup('debit');
+        $totalKredit = $this->jurnal->getTotalSaldoGroup('kredit');
+        $totalKreditGroup = $this->jurnal->getTotalSaldoGroup('kredit');
+        
+
+        // echo '<pre>';
+        // print_r($totalKreditGroiup);
+        // die();
+        $this->load->view('template',compact('content','dataAkun','titleTag','jurnals','totalDebit','totalKreditGroup','totalKredit','jumlah','data','saldo','dataAkunTransaksi'));
     }
 
     public function dataAkun(){
-        $content = 'user/data_akun';
+        $content = 'income/kategori';
         $titleTag = 'Data Akun';
         $dataAkun = $this->akun->getAkun();
         $this->load->view('template',compact('content','dataAkun','titleTag'));
+    }
+    
+    public function getKategori() {
+        $dataAkun = $this->akun->getAkunWithSub();
+       
+        // $data['kategori'] = $this->akun->getKategori(); // method baru ambil data kategori
+        $content = 'income/subkategori';
+        $this->load->view('template',compact('content','dataAkun'));
     }
 
     public function isNamaAkunThere($str){
@@ -83,10 +100,9 @@ class User extends CI_Controller{
 
         if(!$this->akun->validate())
         {
-            $this->load->view('template',compact('content','title','action','data','titleTag'));
+            // $this->load->view('template',compact('content','title','action','data','titleTag'));
             return;
         }
-        
         $this->akun->insertAkun($data);
         $this->session->set_flashdata('berhasil','Data Akun Berhasil Di Tambahkan');
         redirect('data_akun');
@@ -133,11 +149,40 @@ class User extends CI_Controller{
         redirect('data_akun');
     }
 
+
+    public function createAkunSub(){
+        // $title = 'Tambah';
+        // $titleTag = 'Tambah Data Akun';
+        // $action = 'data_akunsub/tambah';
+        // $content = 'user/form_akun';
+
+        if(!$_POST)
+        {
+            $data = (object) $this->akun->getDefaultValues();
+        }
+        else
+        {
+            $data = (object) $this->input->post(null,true);
+            $data->id_user = $this->session->userdata('id');
+        }
+
+        
+        $this->akun->insertAkunSub($data);
+        $this->session->set_flashdata('berhasil','Data Akun Berhasil Di Tambahkan');
+        redirect('data_kategori');
+    }
+
     public function jurnalUmum(){
         $titleTag = 'Jurnal Umum';
-        $content = 'user/jurnal_umum_main';
-        $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
+        $content = 'transaksi/view';
+        // $listJurnal = $this->jurnal->getJurnalByYearAndMonth();
         $tahun = $this->jurnal->getJurnalByYear();
+        // $bulan = date('m');
+        $listJurnal = $this->jurnal->getJurnalJoinAkunDetailAll();
+        // echo '<pre>';
+        // print_r($listJurnal);
+        // die();
+   
         $this->load->view('template',compact('content','listJurnal','titleTag','tahun'));
     }
     public function jurnalUmumDetail(){
@@ -166,7 +211,7 @@ class User extends CI_Controller{
     public function createJurnal()
     {
         $title = 'Tambah'; 
-        $content = 'user/form_jurnal'; 
+        $content = 'transaksi/create'; 
         $action = 'jurnal_umum/tambah'; 
         $tgl_input = date('Y-m-d H:i:s'); 
         $id_user = $this->session->userdata('id'); 
@@ -186,8 +231,12 @@ class User extends CI_Controller{
                 'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
                 'saldo'=>$this->input->post('saldo',true),
-                'keterangan'=>$this->input->post('keterangan',true)
+                'keterangan'=>$this->input->post('keterangan',true),
+                'akun_bidang'=>$this->input->post('akun_bidang',true),                                                                                                                                              
+                'no_reff_sub'=>$this->input->post('akun_sub',true)
             ];
+
+
         }
 
         if(!$this->jurnal->validate()){
@@ -199,6 +248,66 @@ class User extends CI_Controller{
         $this->session->set_flashdata('berhasil','Data Jurnal Berhasil Di Tambahkan');
         redirect('jurnal_umum');    
     }
+
+    public function createKas()
+    {
+        $title = 'Tambah'; 
+        $content = 'transaksi/kas'; 
+        $action = 'user/createKas'; 
+        $tgl_input = date('Y-m-d H:i:s'); 
+        $id_user = $this->session->userdata('id'); 
+        // $titleTag = 'Tambah Jur';
+
+        if(!$_POST)
+        {
+            $data = (object) $this->jurnal->getDefaultValues();
+          
+        }
+        else
+        {
+            $data = (object) 
+            [
+                'id_user'=>$id_user,
+                // 'no_reff'=>$this->input->post('no_reff',true),
+                'tgl_input'=>$tgl_input,
+                'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
+                'jenis_saldo'=>$this->input->post('jenis_saldo',true),
+                'saldo'=>$this->input->post('saldo',true),
+                'keterangan'=>$this->input->post('keterangan',true),
+                'status_kas'=> 1,
+            ];
+
+
+            
+        }
+    
+       
+        $this->jurnal->insertJurnal($data);
+        $this->session->set_flashdata('berhasil','Data Jurnal Berhasil Di Tambahkan');
+        redirect('kas');   
+    }
+
+    
+    public function kas()
+    {
+        $title = 'Tambah'; 
+        $content = 'transaksi/kas'; 
+        $action = 'user/createKas'; 
+        $tgl_input = date('Y-m-d H:i:s'); 
+        $id_user = $this->session->userdata('id'); 
+        $titleTag = 'Tambah Kas';
+        
+        $data = (object) $this->jurnal->getDefaultValues();
+        $listJurnal = $this->jurnal->getJurnalJoinAkunDetailAllKas('kredit',1);
+
+
+        // echo "<pre />";
+        // print_r($listJurnal);
+        // exit();
+   
+        $this->load->view('template',compact('content','title','listJurnal','action','data','titleTag'));
+    }
+
 
     public function editForm(){
         if($_POST){
@@ -325,4 +434,45 @@ class User extends CI_Controller{
         $this->user->logout();
         redirect('');
     }
+
+    // public function get_subkategori()
+    // {
+       
+    //     $id_kategori = $this->input->post('id_kategori');
+    //     // echo $id_kategori;
+    //     $subkategori = $this->akun->getSubKategoriByNoReff($id_kategori);
+    //     header('Content-Type: application/json');
+    //     echo json_encode($subkategori);
+    // }
+
+    public function get_subkategori()
+{
+    $id_kategori = $this->input->post('id_kategori');
+    $subkategori = $this->akun->getSubKategoriByNoReff($id_kategori);
+
+    // Konversi manual (tidak fleksibel tapi bisa jalan sementara)
+    header('Content-Type: application/json');
+    echo '[';
+    $first = true;
+    foreach ($subkategori as $row) {
+        if (!$first) echo ',';
+        echo '{';
+        $i = 0;
+        foreach ($row as $key => $value) {
+            if ($i++) echo ',';
+            echo '"' . $key . '":"' . addslashes($value) . '"';
+        }
+        echo '}';
+        $first = false;
+    }
+    echo ']';
+}
+
+    public function LaporanLaba(){
+        $content = 'laporan/laporan_laba';
+        $titleTag = 'Data Akun';
+        $dataAkun = $this->akun->getAkun();
+        $this->load->view('template',compact('content','dataAkun','titleTag'));
+    }
+    
 }

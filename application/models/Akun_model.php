@@ -3,9 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Akun_model extends CI_Model{
     private $table = 'akun';
+    private $tableSub = 'akun_sub';
 
     public function getAkun(){
         return $this->db->get($this->table)->result();
+    }
+    public function getAkunWithSub(){
+        return $this->db->select('akun.*, akun_sub.nama_reff_sub, akun_sub.keterangan') // @codingStandardsIgnoreLine
+        ->from('akun') // @codingStandardsIgnoreLine
+        ->join('akun_sub', 'akun_sub.nama_reff = akun.no_reff') // @codingStandardsIgnoreLine
+        ->get()
+        ->result();
     }
 
     public function getAkunByMonthYear($bulan, $tahun){
@@ -36,7 +44,11 @@ class Akun_model extends CI_Model{
     public function insertAkun($data){
         return $this->db->insert($this->table,$data);
     }
+    public function insertAkunSub($data){
+        return $this->db->insert($this->tableSub,$data);
+    }
 
+    
     public function updateAkun($noReff,$data){
         return $this->db->where('no_reff',$noReff)->update($this->table,$data);
     }
@@ -45,6 +57,10 @@ class Akun_model extends CI_Model{
         return $this->db->where('no_reff',$noReff)->delete($this->table);
     }
 
+    public function getSubKategoriByNoReff($noReff){
+        // print_r($noReff);
+        return $this->db->where('nama_reff',$noReff)->get($this->tableSub)->result();
+    }
     public function getDefaultValues(){
         return [
             'no_reff'=>'',
