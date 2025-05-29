@@ -41,7 +41,7 @@
                                         <th class="text-center text-xs">Jenis</th>
                                         <th class="text-center text-xs">Keterangan</th>
                                         <th class="text-center text-xs">Jumlah Uang</th>
-                                        <th class="text-center text-xs">Aksi</th>
+                                        <!-- <th class="text-center text-xs">Aksi</th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,9 +58,9 @@
                                         </td>
                                         <td class="text-center text-sm"><?= $row->keteranganDetail ?></td>
                                         <td class="text-center text-sm"><?= number_format($row->saldo, 0, ',', '.') ?></td>
-                                        <td class="text-center">
+                                        <!-- <td class="text-center">
                                             <a href="<?= base_url('data_akun/edit/'.$row->tgl_transaksi) ?>" class="btn btn-sm btn-warning">Edit</a>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                     <?php endforeach; ?> 
                                 </tbody>
@@ -76,7 +76,7 @@
     <div class="modal fade" id="modalTambahKas" tabindex="-1" aria-labelledby="modalTambahKasLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form action="<?= base_url('user/createKas') ?>" method="POST">
+                 <form action="<?= base_url($action) ?>"  method="POST">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalTambahKasLabel">Tambah Kas Baru</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

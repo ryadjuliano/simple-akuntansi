@@ -253,7 +253,7 @@ class User extends CI_Controller{
     {
         $title = 'Tambah'; 
         $content = 'transaksi/kas'; 
-        $action = 'user/kas/create'; 
+        $action = 'user/createKas'; 
         $tgl_input = date('Y-m-d H:i:s'); 
         $id_user = $this->session->userdata('id'); 
         // $titleTag = 'Tambah Jur';
@@ -268,7 +268,7 @@ class User extends CI_Controller{
             $data = (object) 
             [
                 'id_user'=>$id_user,
-                'no_reff'=>$this->input->post('no_reff',true),
+                // 'no_reff'=>$this->input->post('no_reff',true),
                 'tgl_input'=>$tgl_input,
                 'tgl_transaksi'=>$this->input->post('tgl_transaksi',true),
                 'jenis_saldo'=>$this->input->post('jenis_saldo',true),
@@ -278,33 +278,32 @@ class User extends CI_Controller{
             ];
 
 
+            
         }
-
-        if(!$this->jurnal->validate()){
-            $this->load->view('template',compact('content','title','action','data','titleTag'));
-            return;
-        }
-        
+    
+       
         $this->jurnal->insertJurnal($data);
         $this->session->set_flashdata('berhasil','Data Jurnal Berhasil Di Tambahkan');
-        redirect('jurnal_umum');   
+        redirect('kas');   
     }
 
     
     public function kas()
     {
-
-
         $title = 'Tambah'; 
         $content = 'transaksi/kas'; 
-        $action = 'user/kas/create'; 
+        $action = 'user/createKas'; 
         $tgl_input = date('Y-m-d H:i:s'); 
         $id_user = $this->session->userdata('id'); 
         $titleTag = 'Tambah Kas';
         
         $data = (object) $this->jurnal->getDefaultValues();
         $listJurnal = $this->jurnal->getJurnalJoinAkunDetailAllKas('kredit',1);
-    
+
+
+        // echo "<pre />";
+        // print_r($listJurnal);
+        // exit();
    
         $this->load->view('template',compact('content','title','listJurnal','action','data','titleTag'));
     }
